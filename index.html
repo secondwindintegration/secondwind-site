@@ -797,7 +797,7 @@ input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 
     <p>When we set up tools for your business, we may be able to see information about your customers. We only access what we need to do the job, we never sell or share it, and we never use it for our own marketing. Your customer list always belongs to you. Any email list we set up for you only adds customers who have said yes, and every email includes a way to unsubscribe, as the Spam Act 2003 requires.</p>
 
     <h2>Who we share it with</h2>
-    <p>We never sell your information. We share it only with the service providers we need to run our business, such as Google Workspace (email), Netlify (website and forms) and Calendly (bookings), plus our accounting tools, or when the law requires it. Some of these providers store information on servers outside Australia, such as in the United States. We choose providers with strong security and privacy practices.</p>
+    <p>We never sell your information. We share it only with the service providers we need to run our business, such as Google Workspace (email), Netlify (website), Web3Forms (website forms) and Calendly (bookings), plus our accounting tools, or when the law requires it. Some of these providers store information on servers outside Australia, such as in the United States. We choose providers with strong security and privacy practices.</p>
 
     <h2>Emails from us</h2>
     <p>We only send our monthly tip to people who have asked for it. You can unsubscribe at any time using the link in any email, or by letting us know.</p>
@@ -1052,13 +1052,19 @@ input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 
   $('menu-btn').addEventListener('click', () => setMenu(!$('nav-links').classList.contains('open')));
   $('nav-links').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 
-  /* ---------- Forms: real on the live website, preview-only here ---------- */
+  /* ---------- Forms: sent to Jake's inbox via Web3Forms on the live website, preview-only here ---------- */
   const live = /^https?:$/.test(location.protocol) && !/claude\.(ai|site)|claudeusercontent|localhost/.test(location.hostname);
   async function submit(form) {
     if (!live) return 'preview';
     try {
-      const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
-      return r.ok ? 'ok' : 'fail';
+      const d = Object.fromEntries(new FormData(form));
+      if (d.company) return 'ok';
+      delete d['form-name']; delete d.company;
+      const isNews = form.id === 'news';
+      const body = Object.assign({ access_key: 'c5f2010f-6da6-4918-a380-3bc011cc24c7', from_name: 'Second Wind website', subject: isNews ? 'New monthly tip sign-up' : 'New call-back request from ' + (d.name || 'the website') }, d);
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => ({}));
+      return r.ok && j.success !== false ? 'ok' : 'fail';
     } catch { return 'fail'; }
   }
   const failMsg = 'Sorry, that didn\'t send. Please call or email Jake instead.';

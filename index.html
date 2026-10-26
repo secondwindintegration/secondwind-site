@@ -119,8 +119,13 @@ button.btn-primary:focus { color: var(--accent-ink); }
 .nav-phone { text-align: right; line-height: 1.2; font-size: 14px; color: var(--ink-2); }
 .nav-phone b { display: block; font-size: 16px; color: var(--ink); }
 .nav .btn { padding: 10px 14px; min-height: 48px; font-size: 15px; text-align: center; line-height: 1.15; white-space: nowrap; flex: none; max-width: none; min-width: 16.5em; }
-.menu-btn { display: none; align-items: center; gap: 8px; font: 700 17px/1 var(--f-body); color: var(--ink); background: var(--surface); border: 2px solid var(--ink); border-radius: 10px; padding: 0 14px; min-height: 52px; cursor: pointer; }
+.menu-btn { display: none; align-items: center; gap: 8px; font: 700 17px/1 var(--f-body); color: var(--ink); background: var(--surface); border: 2px solid var(--ink); border-radius: 10px; padding: 0 14px; min-height: 52px; cursor: pointer; position: relative; }
 .menu-btn svg { flex: none; }
+.menu-btn .icon-close { display: none; }
+.menu-btn[aria-expanded="true"] .icon-open { display: none; }
+.menu-btn[aria-expanded="true"] .icon-close { display: block; }
+.nav-cta { color: var(--accent-ink); background: var(--accent); }
+.nav-cta-break { display: none; }
 @media (max-width: 1180px) { .nav-phone { display: none; } }
 @media (max-width: 1080px) {
   .menu-btn { display: inline-flex; }
@@ -133,6 +138,24 @@ button.btn-primary:focus { color: var(--accent-ink); }
 }
 @media (max-width: 620px) { .brand small { display: none; } .nav .btn-primary { padding: 8px 10px; font-size: 14px; min-height: 48px; max-width: none; } .nav .wrap { gap: 8px; } }
 @media (max-width: 400px) { .brand { font-size: 16px; } .nav .btn-primary { display: inline-flex; } }
+/* Phones: one row (logo, icon menu, CTA). The old flex-wrap plus the CTA min-width dropped the buttons onto a second row. */
+@media (max-width: 640px) {
+  .nav .wrap { flex-wrap: nowrap; align-items: center; gap: 10px; min-height: 0; padding-top: 14px; padding-bottom: 14px; }
+  .nav .brand { flex: 1 1 auto; min-width: 0; gap: 8px; font-size: 17px; }
+  .nav .brand small { display: none; }
+  .nav .brand svg { width: 34px; height: 34px; }
+  .nav .brand span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-right { flex: none; min-width: 0; margin-left: auto; gap: 8px; }
+  .menu-btn { width: 44px; min-width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 12px; border-width: 2px; }
+  .menu-btn .menu-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+  .nav a.nav-cta { color: var(--accent-ink); background: var(--accent); flex: none; min-width: 0; max-width: none; min-height: 44px; padding: 8px 12px; font-size: 15px; line-height: 1.15; white-space: nowrap; border-radius: 12px; }
+}
+@media (max-width: 480px) {
+  .menu-btn { height: 50px; min-height: 50px; }
+  .nav a.nav-cta { flex-direction: column; gap: 1px; white-space: normal; text-align: center; font-size: 14px; line-height: 1.15; padding: 7px 12px; min-height: 48px; }
+  .nav-cta-label { display: block; text-align: center; white-space: normal; }
+  .nav-cta-break { display: block; }
+}
 .cta-note { margin-top: 12px; color: var(--ink-2); font-size: 17px; max-width: 42ch; }
 
 /* Hero */
@@ -315,6 +338,7 @@ footer.site { padding-block: 52px 40px; border-top: 1px solid var(--line); font-
 .foot h4 { margin: 0 0 12px; font-size: 18px; color: var(--ink); }
 .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .foot a:not(.btn) { color: var(--ink-2); }
+.foot a.btn-primary { color: var(--accent-ink); background: var(--accent); }
 .news { display: grid; gap: 10px; }
 .news .row { display: flex; gap: 8px; flex-wrap: wrap; }
 .news input[type=email] { flex: 1 1 200px; min-width: 0; font: 17px var(--f-body); padding: 12px 14px; border-radius: 10px; border: 2px solid var(--line); background: var(--bg); color: var(--ink); min-height: 52px; }
@@ -447,9 +471,9 @@ body.lp .site .copyline { margin-top: 0; }
       <a class="menu-call" href="tel:0417813548">Call Jake: 0417 813 548</a>
     </div>
     <div class="nav-right">
-      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav-links"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Menu</button>
+      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav-links"><svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="menu-label">Menu</span></button>
       <a class="nav-phone" href="tel:0417813548" style="text-decoration:none">Call Jake<b>0417 813 548</b></a>
-      <a class="btn btn-primary" href="#estimate">Book a free 30-min chat</a>
+      <a class="btn btn-primary nav-cta" href="#estimate"><span class="nav-cta-label">Book a free <br class="nav-cta-break">30-min chat</span></a>
     </div>
   </div>
 </nav>
@@ -1263,9 +1287,16 @@ body.lp .site .copyline { margin-top: 0; }
     setTimeout(run, 1800); setInterval(run, 6500);
   })();
   addEventListener('hashchange', () => { route(); setMenu(false); });
-  function setMenu(open) { $('nav-links').classList.toggle('open', open); $('menu-btn').setAttribute('aria-expanded', String(open)); }
+  function setMenu(open) {
+    $('nav-links').classList.toggle('open', open);
+    const btn = $('menu-btn');
+    btn.setAttribute('aria-expanded', String(open));
+    const label = btn.querySelector('.menu-label');
+    if (label) label.textContent = open ? 'Close' : 'Menu';
+  }
   $('menu-btn').addEventListener('click', () => setMenu(!$('nav-links').classList.contains('open')));
   $('nav-links').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   route();
 
   /* ---------- Forms: sent to Jake's inbox via Web3Forms on the live website, preview-only here ---------- */

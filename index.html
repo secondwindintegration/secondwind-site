@@ -256,6 +256,14 @@ button.btn-primary:focus { color: var(--accent-ink); }
 /* Fit */
 .fit { width: 100%; border-collapse: collapse; font-size: 18px; min-width: 640px; }
 .fit-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+@media (max-width: 640px) {
+  .fit { min-width: 0; font-size: 17px; }
+  .fit thead { display: none; }
+  .fit tr { display: block; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+  .fit tr:last-child { border-bottom: 0; }
+  .fit-wrap .fit td { display: block; padding: 0; border: 0; }
+  .fit-wrap .fit td:first-child { margin-bottom: 6px; }
+}
 .fit th, .fit td { text-align: left; padding: 18px 20px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .fit tr:last-child td { border-bottom: 0; }
 .fit th { font-size: 16px; color: var(--ink-2); background: var(--bg-2); }
@@ -677,7 +685,7 @@ body.lp .site .copyline { margin-top: 0; }
       <article>
         <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
         <h3>Shop Tech Check</h3>
-        <p>Not sure what you're paying for, or who has your passwords? We check your logins, any lock-in contracts and your software bills, then give you a one-page report in plain English. In person on the Sunshine Coast, or over Zoom. A$149, credited toward Shop Assistant if you go ahead within 30 days.</p>
+        <p>Not sure what you're paying for, or who has your passwords? We check your logins, any lock-in contracts and your software bills, then give you a one-page report in plain English. In person on the Sunshine Coast, or over Zoom. A$149, credited towards Shop Assistant if you go ahead within 30 days.</p>
         <p class="eg"><b>For example:</b> you find out who really owns your website and Facebook Page, and which apps you could cancel.</p>
       </article>
     </div>
@@ -767,7 +775,7 @@ body.lp .site .copyline { margin-top: 0; }
       <div>
         <h3>Shop Tech Check</h3>
         <p class="muted">We check who owns your logins, any lock-in contracts, and what you pay for software each month. You get a plain-English one-page report. Done in person on the Sunshine Coast, or over Zoom.</p>
-        <p class="muted" style="font-size:16px">The A$149 is credited toward Shop Assistant if you go ahead within 30 days.</p>
+        <p class="muted" style="font-size:16px">The A$149 is credited towards Shop Assistant if you go ahead within 30 days.</p>
       </div>
       <p class="price" style="font-size:38px">A$149</p>
     </div>
@@ -780,8 +788,8 @@ body.lp .site .copyline { margin-top: 0; }
     <h3 class="tier-group">Care plans, after your support period</h3>
     <p class="muted" style="margin:-8px 0 20px">Support is included for 30–60 days. After that, Care keeps everything running. Paid monthly. Cancel with 30 days' notice.</p>
     <div class="tiers care">
-      <div class="tier"><h3>Care</h3><p class="price">A$250 <small>a month</small></p><p>Always-on keep-alive: your site and helpers are watched and kept running, with a clear reply-time promise. Plus seasonal campaign kits (Christmas, Mother's Day, stocktake sale), with posts and emails drafted for your OK. Not open hours.</p><p class="muted">Care — A$250/mo · Keep-alive for site and helpers · clear reply times · seasonal campaign kits</p></div>
-      <div class="tier"><h3>Care Plus</h3><p class="price">A$450 <small>a month</small></p><p>Everything in Care, plus one counted monthly deliverable (1 small helper or 8 draft posts), a one-page "what's working" check each month, faster reply, and a quarterly review. Anything beyond that is a fixed quote — not open hours.</p><p class="muted">Care Plus — A$450/mo · Care + 1 small helper or 8 draft posts each month · monthly what's-working check · quarterly review</p></div>
+      <div class="tier"><h3>Care</h3><p class="price">A$250 <small>a month</small></p><p>Always-on keep-alive: your site and helpers are watched and kept running, with a clear reply-time promise. Plus seasonal campaign kits (Christmas, Mother's Day, stocktake sale), with posts and emails drafted for your OK. It covers set tasks, not unlimited hours.</p></div>
+      <div class="tier"><h3>Care Plus</h3><p class="price">A$450 <small>a month</small></p><p>Everything in Care, plus one counted monthly deliverable (1 small helper or 8 draft posts), a one-page "what's working" check each month, faster reply, and a quarterly review. Anything beyond that gets a fixed quote, so there are no open-ended hours.</p></div>
     </div>
     <div class="founding" id="founding"><div class="founding-copy"><p><b class="lead">Founding Shop (5 spots): 40% off + Care free for 3 months.</b> Kickstart A$900 · Shop Assistant A$1,740 · Online Shop A$2,940. In return: a short video testimonial and a case study with real numbers.</p><span class="spots">5 Founding spots left</span></div><a class="btn btn-primary" href="#zoom-chat">Book a free 30-min chat</a></div>
     <p class="fine"><b>Extras:</b> an extra helper is A$650, an extra hour of training is A$120, and a simple website on its own (about 5 pages) is A$1,500. Without a Care plan, help after your support period is A$120 an hour.</p>
@@ -1029,11 +1037,11 @@ body.lp .site .copyline { margin-top: 0; }
   <div class="wrap legal">
     <p class="kicker">Privacy policy</p>
     <h1 class="h2" style="margin-top:12px">How we look after your information</h1>
-    <p class="lede" style="margin-top:16px">Last updated 26 October 2026. Second Wind Integration is run by Jake McGrath, ABN 39 445 477 450. We follow the Australian Privacy Principles. This page explains, in plain English, what we collect and what we do with it.</p>
+    <p class="lede" style="margin-top:16px">Last updated 2 November 2026. Second Wind Integration is run by Jake McGrath, ABN 39 445 477 450. We follow the Australian Privacy Principles. This page explains, in plain English, what we collect and what we do with it.</p>
 
     <h2>What we collect</h2>
     <ul>
-      <li><b>When you ask us to call you:</b> your name, your business's name, your phone number and the best time to call.</li>
+      <li><b>When you fill in a form on this website:</b> your name, your business's name, your phone number or email, and anything you tell us about your business.</li>
       <li><b>When you book a chat online:</b> your name, email address and anything you add to the booking, collected through Calendly.</li>
       <li><b>When you sign up for our monthly tip:</b> your email address and your consent to receive it.</li>
       <li><b>When we work with your business:</b> the contact details of you and your staff. We may also need access to the systems we set up, such as your email, social media, till or accounts.</li>

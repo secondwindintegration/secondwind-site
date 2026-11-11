@@ -1411,7 +1411,7 @@ body.lp .site .copyline { margin-top: 0; }
       f.elements.name.value = name; f.elements.email.value = email; f.elements.phone.value = phone;
       t.textContent = 'Sending…';
       const r = await submit(f);
-      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! We'll be in touch by the next business day.` + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
+      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! We'll be in touch by the next business day.` + (r === 'ok' ? ` We've emailed you a confirmation. If it's not in your inbox in a few minutes, check your junk or spam folder.` : '') + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
       if (r === 'ok') { track('Lead'); f.querySelectorAll('input, textarea').forEach(i => i.value = ''); }
       return;
     }

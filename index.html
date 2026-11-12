@@ -732,7 +732,9 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <p class="alt-link">Not ready to spend anything yet? <a href="#zoom-chat">Book a free 30-min chat</a> instead.</p>
       <div class="promise" style="margin-top:28px"><span class="tick" style="width:36px;height:36px;font-size:20px">✓</span><div><b>Our promise</b><p class="muted">If something we set up isn't saving you time within 60 days, we'll keep working on it at no charge until it does. This is on top of your rights under Australian Consumer Law.</p></div></div>
     </div>
-    <form class="form lead-form" id="home-form" data-src="techcheck" aria-label="Book a Shop Tech Check" novalidate>
+    <form class="form lead-form" id="home-form" name="techcheck-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="techcheck" aria-label="Book a Shop Tech Check" novalidate>
+      <input type="hidden" name="form-name" value="techcheck-enquiry">
+      <input type="hidden" name="source" value="techcheck">
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
       <p style="font-weight:700;font-size:22px;margin:0">Book my Shop Tech Check</p>
       <p class="cta-note" style="margin-top:0">We'll be in touch by the next business day to find a time that suits you.</p>
@@ -1139,7 +1141,9 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <p class="lede" style="margin-top:12px">Give us a ring, send an email, or fill in this short form and we'll get back to you by the next business day.</p>
       <div class="callbox"><small>Ring us</small><b><a href="tel:0417813548" style="color:inherit;text-decoration:none">0417 813 548</a></b><br><small style="margin-top:6px">or email <a href="mailto:jake@secondwindintegration.com">jake@secondwindintegration.com</a></small></div>
     </div>
-    <form class="form lead-form" id="contact-form" data-src="contact" aria-label="Book a free 30-min chat" novalidate>
+    <form class="form lead-form" id="contact-form" name="contact-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="contact" aria-label="Book a free 30-min chat" novalidate>
+      <input type="hidden" name="form-name" value="contact-enquiry">
+      <input type="hidden" name="source" value="contact">
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
       <p style="font-weight:700;font-size:22px;margin:0">Book a free 30-min chat</p>
       <p class="cta-note" style="margin-top:0">You leave with 3 time-savers — whether you hire us or not.</p>
@@ -1185,7 +1189,9 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <figure class="mini-quote"><blockquote>“He was patient, explained everything in plain English, and is always a phone call away.”</blockquote><figcaption>Estelle, owner of Julia's Fabric Boutique</figcaption></figure>
       </div>
     </div>
-    <form class="form lead-form" id="start-form" data-src="start" aria-label="Fill this in and we'll be in touch" novalidate>
+    <form class="form lead-form" id="start-form" name="start-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="start" aria-label="Fill this in and we'll be in touch" novalidate>
+      <input type="hidden" name="form-name" value="start-enquiry">
+      <input type="hidden" name="source" value="start">
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
       <p style="font-weight:700;font-size:22px;margin:0">Get a free 30-min chat</p>
       <p style="margin:0;font-size:17px">Fill this in and we'll be in touch by the next business day to find a time.</p>
@@ -1288,7 +1294,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   <div class="wrap legal">
     <p class="kicker">Privacy policy</p>
     <h1 class="h2" style="margin-top:12px">How we look after your information</h1>
-    <p class="lede" style="margin-top:16px">Last updated 2 November 2026. Second Wind Integration is run by Jake McGrath, ABN 39 445 477 450. We follow the Australian Privacy Principles. This page explains, in plain English, what we collect and what we do with it.</p>
+    <p class="lede" style="margin-top:16px">Last updated 12 November 2026. Second Wind Integration is run by Jake McGrath, ABN 39 445 477 450. We follow the Australian Privacy Principles. This page explains, in plain English, what we collect and what we do with it.</p>
 
     <h2>What we collect</h2>
     <ul>
@@ -1309,10 +1315,10 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
     <p>The helpers we set up use business-grade AI tools with data controls, so your information isn't used to train public AI models. We get your written consent before connecting any email inbox or customer system, and you can withdraw it at any time.</p>
 
     <h2>Who we share it with</h2>
-    <p>We never sell your information. We share it only with the service providers we need to run our business, such as Google Workspace (email), Netlify (website), Web3Forms (website forms), Calendly (bookings) and Meta (ad measurement), plus our accounting tools, or when the law requires it. Some of these providers store information on servers outside Australia, such as in the United States. We choose providers with strong security and privacy practices.</p>
+    <p>We never sell your information. We share it only with the service providers we need to run our business, such as Google Workspace (email), Netlify (website), Web3Forms (website forms), Resend (the short thank-you email after an enquiry, when you have given us an email address), Calendly (bookings) and Meta (ad measurement), plus our accounting tools, or when the law requires it. Some of these providers store information on servers outside Australia, such as in the United States. We choose providers with strong security and privacy practices.</p>
 
     <h2>Emails from us</h2>
-    <p>We only send our monthly tip to people who have asked for it. You can unsubscribe at any time using the link in any email, or by letting us know.</p>
+    <p>We only send our monthly tip to people who have asked for it. You can unsubscribe at any time using the link in any email, or by letting us know. If you send an enquiry and include an email address, we also send one short email to say we've got it, with our phone number and booking calendar.</p>
 
     <h2>How we keep it safe</h2>
     <p>We use secure, password-protected accounts with two-step sign-in wherever it's available, and we only keep information for as long as we need it. When a project ends, we remove our access to your systems if you ask us to.</p>
@@ -1756,7 +1762,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
     try {
       const d = Object.fromEntries(new FormData(form));
       if (d.company) return 'ok';
-      delete d['form-name']; delete d.company;
+      delete d['form-name']; delete d.company; delete d.source;
       const isNews = form.id === 'news';
       const isStart = form.dataset.src === 'start';
       const isTech = form.dataset.src === 'techcheck';
@@ -1773,7 +1779,16 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       if (d.email) body.replyto = d.email;
       const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
       const j = await r.json().catch(() => ({}));
-      return r.ok && j.success !== false ? 'ok' : 'fail';
+      const sent = r.ok && j.success !== false;
+      // Best-effort. Netlify stores the enquiry and emails the visitor.
+      // A failure here does not change what the visitor sees, and Jake already has the Web3Forms email.
+      if (sent && !isNews) {
+        try {
+          const params = new URLSearchParams(new FormData(form)).toString();
+          fetch('/enquiry.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params, keepalive: true }).catch(() => {});
+        } catch { /* the thank-you email is best-effort; Jake already has this enquiry */ }
+      }
+      return sent ? 'ok' : 'fail';
     } catch { return 'fail'; }
   }
   const failMsg = 'Sorry, that didn\'t send. Please ring or email us instead.';

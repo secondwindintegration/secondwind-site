@@ -588,7 +588,19 @@ body.lp .site .copyline { margin-top: 0; }
 .why-box { margin-top: 32px; padding: clamp(20px, 3vw, 28px); border-radius: 18px; border: 2px solid var(--accent); background: var(--accent-soft); display: grid; gap: 12px; max-width: 820px; }
 .why-box h3 { font-size: clamp(22px, 2.6vw, 28px); }
 .why-box .btn { justify-self: start; }
-@media (max-width: 700px) { section { padding-block: 48px; } #proof .real-card { max-width: 300px; } #home-faq .faq { gap: 20px; } .hero .checks { display: none; } .screen { height: 460px; } .demo-tabs button { font-size: 16px; padding: 10px 14px; } }
+@media (max-width: 700px) { section { padding-block: 48px; } #proof .real-card { max-width: 300px; } #home-faq .faq { gap: 20px; } .hero .checks { display: none; } .screen { height: 460px; } .demo-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; } .demo-tabs button { font-size: 15px; padding: 8px 10px; min-height: 44px; justify-content: center; } }
+mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 58%, #f7d774 90%, transparent 90%) no-repeat 0 0 / 0% 100%; padding: 0 .06em; animation: hl 1s .5s ease forwards; }
+@keyframes hl { to { background-size: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { mark.hl { animation: none; background-size: 100% 100%; } }
+:root[data-theme="dark"] mark.hl { background-image: linear-gradient(transparent 58%, #6b5a1f 58%, #6b5a1f 90%, transparent 90%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) mark.hl { background-image: linear-gradient(transparent 58%, #6b5a1f 58%, #6b5a1f 90%, transparent 90%); } }
+.toasts { margin-top: 22px; display: grid; gap: 8px; max-width: 460px; }
+.toasts-h { font-weight: 700; font-size: 15px; color: var(--ink-2); display: flex; align-items: center; gap: 4px; }
+.toast { display: flex; gap: 12px; align-items: center; padding: 10px 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 24px -18px rgba(0,0,0,.45); font-size: 16px; line-height: 1.35; }
+.toast .ti { flex: none; width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; font-size: 17px; }
+.js .toast { opacity: 0; transform: translateX(-14px); }
+.js .toast.in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
+@media (prefers-reduced-motion: reduce) { .js .toast { opacity: 1; transform: none; } }
 .cal { margin-top: 32px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; scroll-margin-top: 90px; }
 .cal iframe { display: block; width: 100%; height: 720px; border: 0; }
 @media (max-width: 700px) { .cal iframe { height: 1040px; } }
@@ -626,7 +638,7 @@ body.lp .site .copyline { margin-top: 0; }
   <div class="wrap hero-grid">
     <div>
       <p class="kicker">For independent shop owners</p>
-      <h1 style="margin-top:16px">Get hours back every week in your shop</h1>
+      <h1 style="margin-top:16px">Get <mark class="hl">hours back</mark> every week in your shop</h1>
       <p class="lede">We set up simple helpers that answer customer questions day and night, sort enquiries and keep your shop info up to date, so you can get back to running the shop. Nothing goes out without your OK.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-lg" href="#tech-check">Start with a A$149 Shop Tech Check</a>
@@ -675,7 +687,7 @@ body.lp .site .copyline { margin-top: 0; }
   </div>
 </section>
 
-<section class="line tint" id="in-action">
+<section class="line tint in-action" id="in-action">
   <div class="wrap">
     <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
     <div class="demo-tabs" role="tablist" aria-label="Examples">
@@ -685,8 +697,8 @@ body.lp .site .copyline { margin-top: 0; }
       <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
     </div>
     <div class="stage-wrap">
-      <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top" id="stage-top"></div><div class="feed" id="stage-feed"></div></div></div>
-      <div class="stage-cap" aria-live="polite"><h3 id="stage-h"></h3><p id="stage-p"></p><ul class="steps-mini" id="stage-steps"></ul>
+      <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
+      <div class="stage-cap" aria-live="polite"><h3 class="st-h"></h3><p class="st-p"></p><ul class="steps-mini"></ul>
         <p class="stage-note">Nothing goes out without your OK, unless you've approved the wording first, like the missed-call text.</p>
         <p style="margin-top:20px"><a class="btn btn-primary" href="#tech-check">Find out what we'd set up for you</a></p></div>
     </div>
@@ -1148,8 +1160,15 @@ body.lp .site .copyline { margin-top: 0; }
   <div class="wrap lp-hero">
     <div class="lp-copy">
       <p class="kicker">For shop owners who aren't computer people</p>
-      <h1 style="margin-top:16px">Where are your hours going?</h1>
+      <h1 style="margin-top:16px">Where are your <mark class="hl">hours</mark> going?</h1>
       <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate. Customers answered, even when you're closed, and the admin off your plate.</p>
+      <div class="toasts" aria-label="Example of what's waiting for you in the morning">
+        <p class="toasts-h">Your morning, sorted <span class="demo-tag">Example</span></p>
+        <div class="toast"><span class="ti">💬</span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
+        <div class="toast"><span class="ti">📞</span><span><b>Missed call</b> at 4:52 pm texted back straight away</span></div>
+        <div class="toast"><span class="ti">💵</span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
+        <div class="toast"><span class="ti">📸</span><span><b>New stock post</b> drafted and ready to schedule</span></div>
+      </div>
       <div class="lp-later">
       <p class="lede" style="margin-top:20px">We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date. Helpers use AI to draft, and nothing goes out without your OK.</p>
       <ul class="checks">
@@ -1190,21 +1209,20 @@ body.lp .site .copyline { margin-top: 0; }
   </div>
 </section>
 
-<section class="line">
-  <div class="wrap msg-wrap">
-    <div>
-      <p class="kicker">How it works</p>
-      <h2 class="h2" style="margin-top:14px">While you're closed, the reply's already drafted</h2>
-      <p class="lede" style="margin-top:16px">A customer messages at 9:14 at night. By the time you open up, a friendly reply is waiting for you. You check it, tap approve, and it's done. That's it.</p>
-      <p class="alt-link"><a class="btn btn-primary start-cta" href="#start-form">Get a free 30-min chat</a></p>
+<section class="line tint in-action" id="start-in-action">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
+    <div class="demo-tabs" role="tablist" aria-label="Examples">
+      <button type="button" role="tab" data-scene="call" aria-selected="true">📞 Missed call</button>
+      <button type="button" role="tab" data-scene="chat" aria-selected="false">💬 Website chat</button>
+      <button type="button" role="tab" data-scene="paid" aria-selected="false">💵 Unpaid invoice</button>
+      <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
     </div>
-    <div class="showcase" aria-label="An example of a customer message answered while the shop is closed">
-      <p class="show-label">Example <span class="demo-tag">Not a real customer</span></p>
-      <div class="msg-card">
-        <div class="msg msg-in"><small>9:14 pm · Customer message</small><p>“Hi, do you have the linen in sage? And are you open Sunday?”</p></div>
-        <div class="msg msg-out"><small><span class="dot" aria-hidden="true"></span><span class="hero-st">Waiting for you at 8 am · Reply drafted for you</span></small><p class="hero-reply">“Hi Sarah! Yes, we've got sage linen in stock, and we're open Sunday 10 to 2. Want us to put some aside?”</p>
-          <div class="post-actions" aria-hidden="true"><span class="ok">Approve</span><span>Edit</span></div></div>
-      </div>
+    <div class="stage-wrap">
+      <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
+      <div class="stage-cap" aria-live="polite"><h3 class="st-h"></h3><p class="st-p"></p><ul class="steps-mini"></ul>
+        <p class="stage-note">Nothing goes out without your OK, unless you've approved the wording first, like the missed-call text.</p>
+        <p style="margin-top:20px"><a class="btn btn-primary" href="#start-form">Get a free 30-min chat</a></p></div>
     </div>
   </div>
 </section>
@@ -1673,17 +1691,18 @@ body.lp .site .copyline { margin-top: 0; }
       run: [ ['photo', '', 0], ['draft', 'New in this week: sage washed linen 🌿 Soft, breathable and perfect for summer shirts. A$24 a metre. Pop in and feel it, or reserve some online!', 1, 'Post drafted for you'],
              ['sys green', '✓ Scheduled for Thursday 10 am', 2] ] },
   };
-  (function inAction() {
-    const feed = $('stage-feed'); if (!feed) return;
-    const tabs = [...document.querySelectorAll('.demo-tabs button')], order = tabs.map(t => t.dataset.scene);
+  document.querySelectorAll('.in-action').forEach(function inAction(root) {
+    const feed = root.querySelector('.feed'); if (!feed) return;
+    const q = c => root.querySelector(c);
+    const tabs = [...root.querySelectorAll('.demo-tabs button')], order = tabs.map(t => t.dataset.scene);
     let token = 0, visible = false, current = 'call', userPicked = false;
     function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
-    function mark(stepIx, steps) { [...$('stage-steps').children].forEach((li, i) => li.classList.toggle('on', i <= stepIx)); }
+    function mark(stepIx, steps) { [...q('.steps-mini').children].forEach((li, i) => li.classList.toggle('on', i <= stepIx)); }
     async function play(name) {
       const my = ++token, sc = SCENES[name];
       current = name; tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.scene === name)));
-      $('stage-top').innerHTML = sc.top; $('stage-h').textContent = sc.h; $('stage-p').textContent = sc.p;
-      $('stage-steps').innerHTML = sc.steps.map(x => '<li></li>').join(''); [...$('stage-steps').children].forEach((li, i) => li.textContent = sc.steps[i]);
+      q('.screen-top').innerHTML = sc.top; q('.st-h').textContent = sc.h; q('.st-p').textContent = sc.p;
+      q('.steps-mini').innerHTML = sc.steps.map(x => '<li></li>').join(''); [...q('.steps-mini').children].forEach((li, i) => li.textContent = sc.steps[i]);
       feed.innerHTML = ''; let inv = null;
       const alive = () => my === token;
       for (const [kind, text, step, label] of sc.run) {
@@ -1715,8 +1734,16 @@ body.lp .site .copyline { margin-top: 0; }
     tabs.forEach(t => t.addEventListener('click', () => { userPicked = true; play(t.dataset.scene); }));
     let started = false;
     onScreen(feed, v => { visible = v; if (v && !started) { started = true; play('call'); } else if (v && !userPicked) play(current); });
-  })();
+  });
 
+  document.querySelectorAll('.toasts').forEach(box => {
+    const ts = [...box.querySelectorAll('.toast')];
+    if (calm) { ts.forEach(t => t.classList.add('in')); return; }
+    let busy = false;
+    const run = async () => { if (busy) return; busy = true; ts.forEach(t => t.classList.remove('in')); await wait(300);
+      for (const t of ts) { t.classList.add('in'); await wait(700); } busy = false; };
+    onScreen(box, v => { if (v) run(); });
+  });
   (function reveal() {
     if (calm || !('IntersectionObserver' in window)) return;
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });

@@ -605,6 +605,13 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
 .cal iframe { display: block; width: 100%; height: 720px; border: 0; }
 @media (max-width: 700px) { .cal iframe { height: 1040px; } }
 .cal-alt { margin-top: 12px; font-size: 16px; color: var(--ink-2); }
+/* Phones: keep the homepage short. Package names only here; the details live on the Prices page. */
+@media (max-width: 620px) {
+  #home #packages .tiers { gap: 10px; }
+  #home #packages .tier { padding: 14px 18px; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+  #home #packages .tier p.muted { display: none; }
+  #home #packages .tier .badge { order: 2; }
+}
 </style>
 
 </head>
@@ -745,7 +752,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <ol class="next-steps" aria-label="What happens next">
         <li><b>Jake gets in touch by the next business day to find a time.</b></li>
         <li><b>We go through your shop together over Zoom.</b></li>
-        <li><b>You get your one-page report in plain English to keep.</b></li>
+        <li><b>You get your one-page report to keep.</b></li>
       </ol>
       <small>A$149, done over Zoom. Nothing to pay until we've agreed a time. See the <a href="#privacy">privacy policy</a>.</small>
       <div class="thanks" hidden></div>
@@ -825,7 +832,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">What we can do for you</p>
-      <h2 class="h2">We take the jobs that eat your day and hand them to a helper</h2>
+      <h1 class="h2">We take the jobs that eat your day and hand them to a helper</h1>
       <p class="lede">Each of these jobs is about giving you hours back. Customer questions answered, enquiries sorted, posts written and paperwork done, all in your words, and nothing goes out until you've checked it.</p>
     </div>
     <div class="svc">
@@ -960,7 +967,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">Packages and prices</p>
-      <h2 class="h2">Three fixed packages. Never hourly.</h2>
+      <h1 class="h2">Packages and prices</h1>
       <p class="lede">You'll always know the full price before we start, agreed in writing, with no surprise bills.</p>
     </div>
     <div class="price-step"><span class="step-tag">Start here</span><div><h3>Book a free 30-min chat</h3><p class="muted">By phone or on Zoom. You leave with 3 time-savers — whether you hire us or not.</p></div><p class="price" style="color:var(--accent);font-size:38px">Free</p></div>
@@ -968,13 +975,13 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <span class="step-tag">Not ready for a package?</span>
       <div>
         <h3>Shop Tech Check</h3>
-        <p class="muted">We check who owns your logins, any lock-in contracts, and what you pay for software each month. You get a plain-English one-page report. Done over Zoom.</p>
+        <p class="muted">We check who owns your logins, any lock-in contracts, and what you pay for software each month. You get a one-page report with what to fix first. Done over Zoom.</p>
         <p class="muted" style="font-size:16px">The A$149 is credited towards Shop Assistant if you go ahead within 30 days.</p>
         <p style="margin-top:12px"><a class="btn btn-primary" href="#tech-check" style="font-size:16px;padding:12px 18px;min-height:48px">Book a Shop Tech Check</a></p>
       </div>
       <p class="price" style="font-size:38px">A$149</p>
     </div>
-    <h3 class="tier-group">Packages, at a fixed price</h3>
+    <h3 class="tier-group">Packages</h3>
     <div class="tiers">
       <div class="tier"><h3>Kickstart</h3><p class="price">A$1,500 <small>one-time</small></p><p class="muted"><b>Founding Shop price: A$900</b></p><p class="muted">Best for trying AI on your biggest headache.</p><ul class="checks"><li><span class="tick">✓</span>One AI helper of your choice: email replies, social posts, a weekly sales report, missed-call text back, or invoice reminders</li><li><span class="tick">✓</span>Set up on your own accounts</li><li><span class="tick">✓</span>2 one-hour training sessions</li><li><span class="tick">✓</span>A printed how-to guide</li><li><span class="tick">✓</span>30 days of support</li></ul><a class="btn btn-ghost" href="#zoom-chat">Book free chat about Kickstart</a><p class="muted" style="font-size:16px">You approve everything. Everything in your name.</p><p class="muted" style="font-size:16px">Example first year (Founding Kickstart): A$900 setup + Care free for 3 months, then Care A$250/mo if you stay on. Software is usually about A$30–A$150/mo on top.</p></div>
       <div class="tier feat"><span class="badge">Most popular</span><h3>Shop Assistant</h3><p class="price">A$2,900 <small>one-time</small></p><p class="muted"><b>Founding Shop price: A$1,740</b></p><p class="muted">Best for owners doing admin at night.</p><ul class="checks"><li><span class="tick">✓</span>Website chat helper: answers common questions on your website day and night</li><li><span class="tick">✓</span>Missed-call text back, so callers aren't lost while you're busy</li><li><span class="tick">✓</span>3 helpers: email replies, social posts with a monthly content plan, and paperwork or reports</li><li><span class="tick">✓</span>Answer bank: saved replies to your top 10 customer questions on Facebook, Instagram, WhatsApp and email, ready for your OK</li><li><span class="tick">✓</span>Review helper: review requests for happy customers, and replies to your reviews drafted for your OK</li><li><span class="tick">✓</span>Set up on your own accounts</li><li><span class="tick">✓</span>3 training sessions</li><li><span class="tick">✓</span>A printed how-to guide</li><li><span class="tick">✓</span>60 days of support</li></ul><a class="btn btn-primary" href="#zoom-chat">Book free chat about Shop Assistant</a><p class="muted" style="font-size:16px">You approve everything. Everything in your name.</p><p class="muted" style="font-size:16px">Example first year (Founding Shop Assistant): A$1,740 setup + Care free for 3 months, then Care A$250/mo (or Care Plus A$450/mo) + your usual software (often about A$30–A$150/mo). Exact numbers go in your fixed quote.</p></div>
@@ -1018,7 +1025,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
           <tr><td>Use the government's Digital Solutions (ASBAS) advice</td><td>That's advice, and it's a great place to start. We set it up on your accounts and train you on it.</td></tr>
           <tr><td>Use the AI in Shopify or Canva yourself</td><td>Those are tools. We connect them up and teach you a routine.</td></tr>
           <tr><td>Hire a freelancer online</td><td>We're Australian, you can ring us, and we stay on to support you.</td></tr>
-          <tr><td>Hire an agency</td><td>Fixed prices from A$1,500, and you deal with one person, not an account manager.</td></tr>
+          <tr><td>Hire an agency</td><td>You deal with one person you can ring, not an account manager.</td></tr>
           <tr><td>Stay stuck with an agency or app contract</td><td>Our Shop Tech Check shows what you own, what you're locked into and what you could cancel.</td></tr>
         </tbody>
       </table>
@@ -1094,7 +1101,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
     <div class="portrait"><img id="img-jake" loading="lazy" decoding="async" src="/img/jake-mcgrath.jpg" alt="Jake McGrath, founder of Second Wind Integration" width="720" height="828"><span>Jake McGrath</span></div>
     <div>
       <p class="kicker">About</p>
-      <h2 class="h2" style="margin-top:14px">Hi, I'm Jake. I'll always pick up the phone.</h2>
+      <h1 class="h2" style="margin-top:14px">Hi, I'm Jake. I'll always pick up the phone.</h1>
       <p class="lede" style="margin-top:18px"><b style="color:var(--ink)">You'll work with Second Wind — a real company, not a call centre. Non-tech owners are very welcome.</b></p>
       <p class="lede" style="margin-top:18px">I started Second Wind because I watched good, established shops lose customers to big online stores. They didn't lose them because their products were worse. They just didn't have time for marketing.</p>
       <p class="lede">I'm also an endurance athlete. A "second wind" is the moment the hard part gets easier, and that's what I want for your week.</p>
@@ -1117,7 +1124,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
 <section style="padding-top:clamp(44px,6vw,72px)">
   <div class="wrap">
     <p class="kicker">Contact</p>
-    <h2 class="h2" style="margin-top:14px">Ring us, or we'll ring you</h2>
+    <h1 class="h2" style="margin-top:14px">Ring us, or we'll ring you</h1>
     <p class="lede" style="margin-top:16px">A 30-minute chat, free and with no obligation. We'll tell you honestly whether we can help. If we can't, we'll point you to someone who can, including free government programs.</p>
     <div class="tease-btns" style="margin-top:24px"><a class="btn btn-primary" href="tel:0417813548">Ring 0417 813 548</a><a class="btn btn-ghost" href="#callback">Book a call back</a><a class="btn btn-ghost" href="mailto:jake@secondwindintegration.com">jake@secondwindintegration.com</a></div>
     <h3 class="h2" id="zoom-chat" style="font-size:clamp(24px,3vw,30px);margin-top:44px">Or pick a time for a Zoom chat</h3>
@@ -1161,7 +1168,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
     <div class="lp-copy">
       <p class="kicker">For shop owners who aren't computer people</p>
       <h1 style="margin-top:16px">Where are your <mark class="hl">hours</mark> going?</h1>
-      <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate. Customers answered, even when you're closed, and the admin off your plate.</p>
+      <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate: customers answered, even when you're closed, and less admin for you.</p>
       <div class="toasts" aria-label="Example of what's waiting for you in the morning">
         <p class="toasts-h">Your morning, sorted <span class="demo-tag">Example</span></p>
         <div class="toast"><span class="ti">💬</span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
@@ -1561,6 +1568,8 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
     document.body.classList.toggle('lp', page.id === 'start');
     const go = document.getElementById('mbar-go');
     if (go) { const tc = page.id === 'home'; go.href = page.id === 'start' ? '#start-form' : tc ? '#tech-check' : '#zoom-chat'; go.textContent = tc ? 'Book a Tech Check' : 'Free 30-min chat'; }
+    const navGo = document.querySelector('.nav-cta');
+    if (navGo) { const tc = page.id === 'home'; navGo.href = tc ? '#tech-check' : '#zoom-chat'; navGo.querySelector('.nav-cta-label').innerHTML = tc ? 'Book a <br class="nav-cta-break">Tech Check' : 'Book a free <br class="nav-cta-break">30-min chat'; }
     document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === '#' + page.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     const T = {home:'Second Wind Integration | Get hours back every week in your shop', services:'What we do | Second Wind Integration', prices:'Packages and prices | Second Wind Integration', projects:'Past projects | Second Wind Integration', about:'About Jake | Second Wind Integration', contact:'Contact Jake | Second Wind Integration', privacy:'Privacy policy | Second Wind Integration', start:'Where are your hours going? | Second Wind Integration'};
     if (T[page.id]) document.title = T[page.id];

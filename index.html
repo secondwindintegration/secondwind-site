@@ -504,6 +504,29 @@ body.lp .site .copyline { margin-top: 0; }
 @media (max-width: 700px) { .hi-jake { grid-template-columns: 1fr; } .hi-jake img { width: 180px; height: 207px; } }
 .hi-jake .tease-btns { margin-top: 22px; }
 .home-faq details { border-bottom: 1px solid var(--line); }
+.next-steps { list-style: none; counter-reset: n; padding: 0; margin: 4px 0 0; display: grid; gap: 8px; font-size: 16px; color: var(--ink-2); }
+.next-steps li { counter-increment: n; display: flex; gap: 10px; align-items: baseline; }
+.next-steps li::before { content: counter(n); flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 14px; display: grid; place-items: center; }
+.next-steps b { font-weight: 400; }
+.next-title { font-weight: 700; font-size: 17px; margin-top: 4px !important; }
+.mini-quote { margin: 22px 0 0; padding: 14px 18px; border-left: 4px solid var(--accent); background: var(--bg-2); border-radius: 0 12px 12px 0; max-width: 52ch; }
+.mini-quote blockquote { margin: 0; padding: 0; border: 0; font-size: 18px; color: var(--ink); }
+.mini-quote figcaption { margin-top: 6px; font-size: 15px; color: var(--ink-2); }
+.cal-now { margin-top: 10px; }
+.cal-now a { font-weight: 700; }
+/* Phone-only bottom bar: one tap to ring or enquire */
+.mbar { display: none; }
+@media (max-width: 700px) {
+  .mbar { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; padding: 10px max(12px, env(safe-area-inset-left, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -10px 24px -18px rgba(0,0,0,.4); transition: transform .25s; }
+  .mbar .btn { min-height: 52px; padding: 12px 10px; font-size: 17px; }
+  .mbar.away { transform: translateY(110%); }
+  body { padding-bottom: 76px; }
+  /* Ad page on phones: headline, then straight to the form, then the details */
+  .lp-hero > .lp-copy { display: contents; }
+  .lp-hero > .lp-copy > * { order: 1; }
+  .lp-hero > .lp-copy > .lp-later { order: 3; }
+  .lp-hero > form { order: 2; }
+}
 .cal { margin-top: 32px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; scroll-margin-top: 90px; }
 .cal iframe { display: block; width: 100%; height: 720px; border: 0; }
 @media (max-width: 700px) { .cal iframe { height: 1040px; } }
@@ -548,6 +571,7 @@ body.lp .site .copyline { margin-top: 0; }
         <a class="btn btn-ghost" href="#zoom-chat">Book a free 30-min chat</a>
       </div>
       <p class="cta-note">Not sure yet? The 30-min chat is free, and you leave with 3 time-savers whether you hire us or not.</p>
+      <figure class="mini-quote"><blockquote>“He was patient, explained everything in plain English, and is always a phone call away.”</blockquote><figcaption>Estelle, owner of Julia's Fabric Boutique</figcaption></figure>
       <ul class="checks">
         <li><span class="tick">✓</span>Made for owners who aren't "computer people"</li>
         <li><span class="tick">✓</span>Fixed prices agreed in writing</li>
@@ -656,6 +680,7 @@ body.lp .site .copyline { margin-top: 0; }
         <li><span class="tick">✓</span>The A$149 is credited towards Shop Assistant if you go ahead within 30 days</li>
       </ul>
       <p class="alt-link">Not ready to spend anything yet? <a href="#zoom-chat">Book a free 30-min chat</a> instead.</p>
+      <div class="promise" style="margin-top:28px"><span class="tick" style="width:36px;height:36px;font-size:20px">✓</span><div><b>Our promise</b><p class="muted">If something we set up isn't saving you time within 60 days, we'll keep working on it at no charge until it does. This is on top of your rights under Australian Consumer Law.</p></div></div>
     </div>
     <form class="form lead-form" id="home-form" data-src="techcheck" aria-label="Book a Shop Tech Check" novalidate>
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
@@ -666,6 +691,12 @@ body.lp .site .copyline { margin-top: 0; }
       <label>Phone or email<input name="contact" autocomplete="tel" required></label>
       <label>What would you most like off your plate? <span style="font-weight:400;color:var(--ink-2)">(optional)</span><textarea name="headache" rows="3" placeholder="For example: answering the same customer questions"></textarea></label>
       <button class="btn btn-primary btn-lg" type="submit">Book my Shop Tech Check</button>
+      <p class="next-title">What happens next</p>
+      <ol class="next-steps" aria-label="What happens next">
+        <li><b>Jake gets in touch by the next business day to find a time.</b></li>
+        <li><b>We go through your shop together over Zoom.</b></li>
+        <li><b>You get your one-page report in plain English to keep.</b></li>
+      </ol>
       <small>A$149, done over Zoom. Nothing to pay until we've agreed a time. See the <a href="#privacy">privacy policy</a>.</small>
       <div class="thanks" hidden></div>
     </form>
@@ -1043,11 +1074,12 @@ body.lp .site .copyline { margin-top: 0; }
 <main class="page" id="start" hidden>
 <section class="hero">
   <div class="wrap lp-hero">
-    <div>
+    <div class="lp-copy">
       <p class="kicker">For shop owners who aren't computer people</p>
       <h1 style="margin-top:16px">Where are your hours going?</h1>
-      <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate. No jargon, no lock-in, fixed prices. We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date, and nothing goes out without your OK.</p>
-      <p class="lede" style="margin-top:12px">Helpers use AI to draft; you stay in control.</p>
+      <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate. No jargon, no lock-in, fixed prices.</p>
+      <div class="lp-later">
+      <p class="lede" style="margin-top:20px">We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date. Helpers use AI to draft, and nothing goes out without your OK.</p>
       <ul class="checks">
         <li><span class="tick">✓</span>Customer questions answered, with replies drafted in your voice for your OK</li>
         <li><span class="tick">✓</span>Enquiries sorted, and your hours kept up to date online</li>
@@ -1059,6 +1091,8 @@ body.lp .site .copyline { margin-top: 0; }
         <a class="btn btn-primary btn-lg start-cta" href="#start-form">Get a free 30-min chat</a>
       </div>
       <p style="margin-top:16px;font-size:18px">Rather talk? Ring Jake on <a href="tel:0417813548"><b>0417 813 548</b></a>.</p>
+      <figure class="mini-quote"><blockquote>“He was patient, explained everything in plain English, and is always a phone call away.”</blockquote><figcaption>Estelle, owner of Julia's Fabric Boutique</figcaption></figure>
+      </div>
     </div>
     <form class="form lead-form" id="start-form" data-src="start" aria-label="Fill this in and we'll be in touch" novalidate>
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
@@ -1067,11 +1101,17 @@ body.lp .site .copyline { margin-top: 0; }
       <p class="cta-note" style="margin-top:0">You leave with 3 time-savers — whether you hire us or not.</p>
       <label>Name<input name="name" autocomplete="name" required></label>
       <label>Shop name <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="shop" autocomplete="organization"></label>
-      <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
       <label>Phone<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="0412 345 678" required></label>
+      <label>Email <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="email" type="email" autocomplete="email" inputmode="email"></label>
       <label>Best time to call <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="time" autocomplete="off"></label>
       <label>What takes up most of your week that you'd love off your plate? <span style="font-weight:400;color:var(--ink-2)">(optional)</span><textarea name="busywork" rows="3" placeholder="Answering the same customer questions, updating stock online, chasing quotes..."></textarea></label>
       <button class="btn btn-primary btn-lg" type="submit">Book my free chat</button>
+      <p class="next-title">What happens next</p>
+      <ol class="next-steps" aria-label="What happens next">
+        <li><b>Jake rings you by the next business day to find a time.</b></li>
+        <li><b>We have a relaxed 30-min Zoom chat about your shop.</b></li>
+        <li><b>If we can help, you get a fixed written quote within 48 hours. No pressure.</b></li>
+      </ol>
       <small>We'll reply by the next business day. Or ring us on <a href="tel:0417813548">0417 813 548</a>. Free, with no obligation. See the <a href="#privacy">privacy policy</a>.</small>
       <div class="thanks" hidden></div>
     </form>
@@ -1112,6 +1152,10 @@ body.lp .site .copyline { margin-top: 0; }
       </div>
     </div>
   </div>
+</section>
+
+<section class="line" style="padding-block:clamp(36px,5vw,56px)">
+  <div class="wrap"><div class="promise" style="margin-top:0"><span class="tick" style="width:36px;height:36px;font-size:20px">✓</span><div><b>Our promise</b><p class="muted">If something we set up isn't saving you time within 60 days, we'll keep working on it at no charge until it does. This is on top of your rights under Australian Consumer Law.</p></div></div></div>
 </section>
 
 <section class="line" id="start-packages">
@@ -1191,6 +1235,11 @@ body.lp .site .copyline { margin-top: 0; }
   </div>
 </section>
 </main>
+
+<div class="mbar" id="mbar" aria-label="Quick contact">
+  <a class="btn btn-ghost" href="tel:0417813548">Ring Jake</a>
+  <a class="btn btn-primary" id="mbar-go" href="#tech-check">Book a Tech Check</a>
+</div>
 
 <footer class="site">
   <div class="wrap">
@@ -1419,6 +1468,8 @@ body.lp .site .copyline { margin-top: 0; }
     const changed = page.hidden;
     pages.forEach(p => { p.hidden = p !== page; });
     document.body.classList.toggle('lp', page.id === 'start');
+    const go = document.getElementById('mbar-go');
+    if (go) { const tc = page.id === 'home'; go.href = page.id === 'start' ? '#start-form' : tc ? '#tech-check' : '#zoom-chat'; go.textContent = tc ? 'Book a Tech Check' : 'Free 30-min chat'; }
     document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === '#' + page.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     const T = {home:'Second Wind Integration | Get hours back every week in your shop', services:'What we do | Second Wind Integration', prices:'Packages and prices | Second Wind Integration', projects:'Past projects | Second Wind Integration', about:'About Jake | Second Wind Integration', contact:'Contact Jake | Second Wind Integration', privacy:'Privacy policy | Second Wind Integration', start:'Where are your hours going? | Second Wind Integration'};
     if (T[page.id]) document.title = T[page.id];
@@ -1453,6 +1504,10 @@ body.lp .site .copyline { margin-top: 0; }
     fbq('init', PIXEL_ID);
   }
   const track = (ev, data) => { if (window.fbq) fbq('track', ev, data); };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (a) track('Contact', { method: a.href.startsWith('tel:') ? 'phone' : 'email' });
+  });
   addEventListener('message', e => { if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') track('Schedule'); });
   (function approveDemo() {
     const card = document.querySelector('.real-card'); if (!card) return;
@@ -1478,6 +1533,11 @@ body.lp .site .copyline { margin-top: 0; }
   $('nav-links').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   route();
+  if ('IntersectionObserver' in window) {
+    const seen = new Set();
+    const io = new IntersectionObserver(es => { es.forEach(x => x.isIntersecting ? seen.add(x.target) : seen.delete(x.target)); $('mbar').classList.toggle('away', seen.size > 0); });
+    document.querySelectorAll('.lead-form, .cal, footer.site').forEach(el => io.observe(el));
+  }
 
   /* ---------- Forms: sent to Jake's inbox via Web3Forms on the live website, preview-only here ---------- */
   async function submit(form) {
@@ -1519,13 +1579,14 @@ body.lp .site .copyline { margin-top: 0; }
     t.hidden = false;
     if (f.id === 'start-form') {
       const name = f.elements.name.value.trim(), email = f.elements.email.value.trim(), phone = f.elements.phone.value.trim();
-      if (!name || !email || !phone) { t.textContent = 'Please add your name, email and phone so we can get back to you.'; return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { t.textContent = 'Please check the email address so we can write back.'; return; }
+      if (!name || !phone) { t.textContent = 'Please add your name and phone number so we can ring you back.'; return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { t.textContent = 'Please check the email address so we can write back.'; return; }
       if (!isAuPhone(phone)) { t.textContent = 'Please add an Australian phone number, like 0412 345 678.'; return; }
       f.elements.name.value = name; f.elements.email.value = email; f.elements.phone.value = phone;
       t.textContent = 'Sending…';
       const r = await submit(f);
-      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! We'll be in touch by the next business day.` + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
+      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! Jake will ring you on ${phone} by the next business day.` + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
+      if (r !== 'fail') t.insertAdjacentHTML('beforeend', '<p class="cal-now">Want to pick a time now? <a href="https://calendly.com/jake-secondwindintegration/30min" target="_blank" rel="noopener">Open Jake\'s calendar</a>.</p>');
       if (r === 'ok') { track('Lead'); f.querySelectorAll('input, textarea').forEach(i => i.value = ''); }
       return;
     }

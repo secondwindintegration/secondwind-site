@@ -441,6 +441,7 @@ input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 
 .lp-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 60px); align-items: start; }
 @media (max-width: 920px) { .lp-hero { grid-template-columns: 1fr; } }
 .lp-hero h1 { font-size: clamp(40px, 5.6vw, 64px); }
+.lp-offer { margin-top: 14px; font-size: 17px; color: var(--ink-2); }
 .lp-hero .checks { margin-top: 28px; font-size: 19px; }
 .lp-me { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; align-items: center; }
 @media (max-width: 560px) { .lp-me { grid-template-columns: 1fr; } }
@@ -1338,9 +1339,15 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
 <section class="hero">
   <div class="wrap lp-hero">
     <div class="lp-copy">
-      <p class="kicker">For shop owners who aren't computer people</p>
-      <h1 style="margin-top:16px">Where are your <mark class="hl">hours</mark> going?</h1>
-      <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate: customers answered, even when you're closed, and less admin for you.</p>
+      <p class="kicker">Free 30-minute Zoom chat</p>
+      <h1 style="margin-top:16px">Less paperwork after <mark class="hl">closing time</mark></h1>
+      <p class="lede" style="margin-top:20px">Still typing the same order into the till, the stock sheet and an email? Book a free 30-minute chat with Jake. We'll look at where your hours go and show you what we'd set up, using the tools you already have.</p>
+      <div class="hero-ctas" style="margin-top:24px">
+        <a class="btn btn-primary btn-lg" href="#start-book">Pick a time for your free chat</a>
+      </div>
+      <p style="margin-top:14px;font-size:18px">Rather talk now? Ring Jake on <a href="tel:0417813548"><b>0417 813 548</b></a>.</p>
+      <p class="lp-offer"><b>Founding Shop offer:</b> 40% off for our first 5 shops.</p>
+      <div class="lp-later">
       <div class="toasts" aria-label="Example of what's waiting for you in the morning">
         <p class="toasts-h">Your morning, sorted <span class="demo-tag">Example</span></p>
         <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
@@ -1348,7 +1355,6 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
         <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
         <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span><b>New stock post</b> drafted and ready to schedule</span></div>
       </div>
-      <div class="lp-later">
       <p class="lede" style="margin-top:20px">We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date. Helpers use AI to draft, and nothing goes out without your OK.</p>
       <ul class="checks">
         <li><span class="tick">✓</span>Customer questions answered, with replies drafted in your voice for your OK</li>
@@ -1357,36 +1363,38 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
         <li><span class="tick">✓</span>You approve everything before it goes out</li>
         <li><span class="tick">✓</span>Founding Shops get 40% off any package, from A$900</li>
       </ul>
-      <div class="hero-ctas">
-        <a class="btn btn-primary btn-lg start-cta" href="#start-form">Get your free Shop Tech Check</a>
-      </div>
-      <p style="margin-top:16px;font-size:18px">Rather talk? Ring Jake on <a href="tel:0417813548"><b>0417 813 548</b></a>.</p>
       <figure class="mini-quote"><blockquote>“He was patient, explained everything in plain English, and is always a phone call away.”</blockquote><figcaption>Estelle, owner of Julia's Fabric Boutique</figcaption></figure>
       </div>
     </div>
-    <form class="form lead-form" id="start-form" name="start-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="start" aria-label="Fill this in and we'll be in touch" novalidate>
+    <form class="form lead-form" id="start-form" name="start-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="start" aria-label="Ask Jake to ring you" novalidate>
       <input type="hidden" name="form-name" value="start-enquiry">
       <input type="hidden" name="source" value="start">
       <p hidden><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
-      <p style="font-weight:700;font-size:22px;margin:0">Get your free Shop Tech Check</p>
-      <p style="margin:0;font-size:17px">Fill this in and we'll be in touch by the next business day to find a time.</p>
-      <p class="cta-note" style="margin-top:0">A 30-min Zoom call. You leave with a one-page report and 3 time-savers, whether you hire us or not.</p>
-      <label>Name<input name="name" autocomplete="name" required></label>
-      <label>Shop name <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="shop" autocomplete="organization"></label>
-      <label>Phone<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="0412 345 678" required></label>
-      <label>Email <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="email" type="email" autocomplete="email" inputmode="email"></label>
-      <label>Best time to call <span style="font-weight:400;color:var(--ink-2)">(optional)</span><input name="time" autocomplete="off"></label>
-      <label>What takes up most of your week that you'd love off your plate? <span style="font-weight:400;color:var(--ink-2)">(optional)</span><textarea name="busywork" rows="3" placeholder="Answering the same customer questions, updating stock online, chasing quotes..."></textarea></label>
-      <button class="btn btn-primary btn-lg" type="submit">Book my free Tech Check</button>
+      <p style="font-weight:700;font-size:22px;margin:0">Rather we ring you?</p>
+      <p style="margin:0;font-size:17px">Leave your name and number and Jake will ring you by the next business day to find a time that suits.</p>
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Phone or email<input name="contact" autocomplete="tel" placeholder="0412 345 678" required></label>
+      <label>What takes up most of your week? <span style="font-weight:400;color:var(--ink-2)">(optional)</span><textarea name="busywork" rows="2" placeholder="Answering the same questions, updating stock, paperwork..."></textarea></label>
+      <button class="btn btn-primary btn-lg" type="submit">Ring me back</button>
       <p class="next-title">What happens next</p>
       <ol class="next-steps" aria-label="What happens next">
-        <li><b>Jake rings you by the next business day to find a time.</b></li>
-        <li><b>We go through your shop together in a relaxed 30-min Zoom call, and you get your one-page report.</b></li>
-        <li><b>If we can help, you get a fixed written quote within 48 hours. No pressure.</b></li>
+        <li><b>Jake gets in touch by the next business day to find a time.</b></li>
+        <li><b>A relaxed 30-min Zoom chat about your shop. You leave with a one-page report and 3 time-savers.</b></li>
+        <li><b>If we can help, you get a written quote within 48 hours. No pressure.</b></li>
       </ol>
-      <small>We'll reply by the next business day. Or ring us on <a href="tel:0417813548">0417 813 548</a>. Free, with no obligation. See the <a href="#privacy">privacy policy</a>.</small>
+      <small>Free, with no obligation. See the <a href="#privacy">privacy policy</a>.</small>
       <div class="thanks" hidden></div>
     </form>
+  </div>
+</section>
+
+<section class="line" id="start-book">
+  <div class="wrap">
+    <div class="sec-head"><p class="kicker">Book now</p><h2 class="h2">Pick a time for your free chat</h2><p class="lede">Choose a day and time that suits you. It's a 30-minute Zoom call with Jake, and the link comes to you by email. Free, with no obligation.</p></div>
+    <div class="cal">
+      <iframe src="https://calendly.com/jake-secondwindintegration/30min?hide_gdpr_banner=1&amp;primary_color=1f3a5f&amp;embed_type=Inline&amp;embed_domain=secondwindintegration.com" title="Pick a time for your free chat with Jake" loading="lazy"></iframe>
+    </div>
+    <p class="cal-alt">Calendar not showing? <a href="https://calendly.com/jake-secondwindintegration/30min" target="_blank" rel="noopener">Open the booking calendar in a new tab</a>, or ring Jake on <a href="tel:0417813548">0417 813 548</a>.</p>
   </div>
 </section>
 
@@ -1403,7 +1411,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
       <div class="stage-cap" aria-live="polite"><h3 class="st-h"></h3><p class="st-p"></p><ul class="steps-mini"></ul>
         <p class="stage-note">Nothing goes out without your OK, unless you've approved the wording first, like the missed-call text.</p>
-        <p style="margin-top:20px"><a class="btn btn-primary" href="#start-form">Get your free Shop Tech Check</a></p></div>
+        <p style="margin-top:20px"><a class="btn btn-primary" href="#start-book">Book your free chat</a></p></div>
     </div>
   </div>
 </section>
@@ -1432,7 +1440,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
 
 <section class="line" id="start-packages">
   <div class="wrap">
-    <div class="sec-head"><p class="kicker">Packages</p><h2 class="h2">Three ways we can help</h2><p class="lede">Pick the one that fits, or we'll recommend one after your Tech Check.</p></div>
+    <div class="sec-head"><p class="kicker">Packages</p><h2 class="h2">Three ways we can help</h2><p class="lede">Pick the one that fits, or we'll recommend one after your free chat.</p></div>
     <div class="tiers">
       <div class="tier"><h3>Kickstart</h3><p class="muted">One helper for your biggest headache, like customer emails, social posts, missed-call text back or chasing unpaid invoices.</p></div>
       <div class="tier feat"><span class="badge">Most popular</span><h3>Shop Assistant</h3><p class="muted">A website chat helper and missed-call text back, plus customer replies, posts and paperwork drafted for you.</p></div>
@@ -1446,8 +1454,8 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   <div class="wrap">
     <div class="sec-head"><p class="kicker">How it works</p><h2 class="h2">Simple, and done with you</h2></div>
     <ol class="steps4">
-      <li><h3>Free Shop Tech Check (30 min)</h3><p>Fill in the form or ring us. You leave with a one-page report and 3 time-savers, whether you hire us or not.</p></li>
-      <li><h3>Fixed quote in 48 hours</h3><p>It lists exactly what's included, so there are no surprises.</p></li>
+      <li><h3>Free 30-min chat</h3><p>Pick a time or ring us. You leave with a one-page report and 3 time-savers, whether you hire us or not.</p></li>
+      <li><h3>Written quote in 48 hours</h3><p>It lists exactly what's included, so there are no surprises.</p></li>
       <li><h3>Set up and trained</h3><p>We set it up on your own accounts and show you step by step, with a printed guide.</p></li>
     </ol>
   </div>
@@ -1461,7 +1469,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <p class="lede" style="margin-top:12px">We work with shops all over Australia over Zoom. I started Second Wind because I kept seeing good shop owners buried in admin and sold tech they didn't need. We do the techy bits, you stay in charge, and we never lock you in. Ring me on <a href="tel:0417813548">0417 813 548</a>.</p>
     </div>
   </div>
-  <div class="wrap"><div class="founding"><div class="founding-copy"><p><b class="lead">Founding Shop offer (5 places): 40% off any package.</b> Packages start from A$900 for Founding Shops, plus Care free for 3 months. In return: a short video testimonial and a case study with real numbers.</p><span class="spots">5 Founding places left</span></div><a class="btn btn-primary start-cta" href="#start-form">Get your free Shop Tech Check</a></div></div>
+  <div class="wrap"><div class="founding"><div class="founding-copy"><p><b class="lead">Founding Shop offer (5 places): 40% off any package.</b> Packages start from A$900 for Founding Shops, plus Care free for 3 months. In return: a short video testimonial and a case study with real numbers.</p><span class="spots">5 Founding places left</span></div><a class="btn btn-primary start-cta" href="#start-book">Book your free chat</a></div></div>
 </section>
 </main>
 
@@ -1742,18 +1750,18 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
     pages.forEach(p => { p.hidden = p !== page; });
     document.body.classList.toggle('lp', page.id === 'start');
     const go = document.getElementById('mbar-go');
-    if (go) { const tc = page.id === 'home'; go.href = page.id === 'start' ? '#start-form' : tc ? '#tech-check' : '#zoom-chat'; go.textContent = 'Free Tech Check'; }
+    if (go) { const tc = page.id === 'home'; go.href = page.id === 'start' ? '#start-book' : tc ? '#tech-check' : '#zoom-chat'; go.textContent = page.id === 'start' ? 'Book free chat' : 'Free Tech Check'; }
     const navGo = document.querySelector('.nav-cta');
     if (navGo) { const tc = page.id === 'home'; navGo.href = tc ? '#tech-check' : '#zoom-chat'; navGo.querySelector('.nav-cta-label').innerHTML = 'Book a free <br class="nav-cta-break">Tech Check'; }
     document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === '#' + page.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    const T = {home:'Second Wind Integration | Get hours back every week in your shop', services:'What we do | Second Wind Integration', prices:'Packages and prices | Second Wind Integration', projects:'Past projects | Second Wind Integration', about:'About Jake | Second Wind Integration', contact:'Contact Jake | Second Wind Integration', privacy:'Privacy policy | Second Wind Integration', start:'Where are your hours going? | Second Wind Integration'};
+    const T = {home:'Second Wind Integration | Get hours back every week in your shop', services:'What we do | Second Wind Integration', prices:'Packages and prices | Second Wind Integration', projects:'Past projects | Second Wind Integration', about:'About Jake | Second Wind Integration', contact:'Contact Jake | Second Wind Integration', privacy:'Privacy policy | Second Wind Integration', start:'Less paperwork after closing time | Second Wind Integration'};
     if (T[page.id]) document.title = T[page.id];
     if (live) {
       if (location.pathname === '/' && h && page.id !== 'home') history.replaceState(null, '', pathOf(page) + (target && target !== page ? '#' + target.id : ''));
       let c = document.querySelector('link[rel=canonical]');
       if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
       c.href = 'https://secondwindintegration.com' + pathOf(page);
-      if (window.fbq) fbq('track', 'PageView');
+      if (changed && window.fbq) fbq('track', 'PageView');
     }
     if (page.id === 'home') heroFabric();
     if (page.id === 'projects') shelf();
@@ -1955,6 +1963,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
           : 'New free Shop Tech Check request from ' + who + (d.business ? ' (' + d.business + ')' : '');
       const body = Object.assign({ access_key: 'c5f2010f-6da6-4918-a380-3bc011cc24c7', from_name: 'Second Wind website', subject: (previewHost ? '[PREVIEW TEST] ' : '') + subject, page: form.dataset.src || '' }, d);
       if (d.email) body.replyto = d.email;
+      else if (d.contact && d.contact.includes('@')) body.replyto = d.contact;
       const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
       const j = await r.json().catch(() => ({}));
       const sent = r.ok && j.success !== false;
@@ -1982,15 +1991,15 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
     const t = f.querySelector('.thanks');
     t.hidden = false;
     if (f.id === 'start-form') {
-      const name = f.elements.name.value.trim(), email = f.elements.email.value.trim(), phone = f.elements.phone.value.trim();
-      if (!name || !phone) { t.textContent = 'Please add your name and phone number so we can ring you back.'; return; }
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { t.textContent = 'Please check the email address so we can write back.'; return; }
-      if (!isAuPhone(phone)) { t.textContent = 'Please add an Australian phone number, like 0412 345 678.'; return; }
-      f.elements.name.value = name; f.elements.email.value = email; f.elements.phone.value = phone;
+      const name = f.elements.name.value.trim(), contact = f.elements.contact.value.trim();
+      if (!name || !contact) { t.textContent = 'Please add your name and a phone number or email so we can get back to you.'; return; }
+      const isEmail = contact.includes('@');
+      if (isEmail ? !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact) : !isAuPhone(contact)) { t.textContent = isEmail ? 'Please check the email address so we can write back.' : 'Please check the phone number, like 0412 345 678.'; return; }
+      f.elements.name.value = name; f.elements.contact.value = contact;
       t.textContent = 'Sending…';
       const r = await submit(f);
-      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! Jake will ring you on ${phone} by the next business day.` + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
-      if (r !== 'fail') t.insertAdjacentHTML('beforeend', '<p class="cal-now">Want to pick a time now? <a href="https://calendly.com/jake-secondwindintegration/30min" target="_blank" rel="noopener">Open Jake\'s calendar</a>.</p>');
+      t.textContent = r === 'fail' ? failMsg : `Thanks, ${name.split(' ')[0]}! Jake will be in touch on ${contact} by the next business day.` + (r === 'preview' ? ' (This is a preview, so nothing has been sent yet.)' : '');
+      if (r !== 'fail') t.insertAdjacentHTML('beforeend', '<p class="cal-now">Want to pick a time now? <a href="#start-book">Choose a time in the calendar below</a>.</p>');
       if (r === 'ok') { track('Lead'); f.querySelectorAll('input, textarea').forEach(i => i.value = ''); }
       return;
     }

@@ -16,8 +16,8 @@ PAGES = {
               'Meet Jake McGrath from Second Wind Integration. We help shop owners all over Australia get hours back every week, over Zoom, and you can always ring us.'),
     'contact': ('Contact Jake | Second Wind Integration',
                 'Ring Jake on 0417 813 548, send us a message, or book a free Shop Tech Check over Zoom. We reply by the next business day.'),
-    'start': ('Where are your hours going? | Second Wind Integration',
-              "Tell us about your shop and we'll show you what we can take off your plate. Book a free Shop Tech Check with Jake over Zoom."),
+    'start': ('Less paperwork after closing time | Second Wind Integration',
+              "Book a free 30-minute Zoom chat with Jake. We'll look at where your hours go and show you what we'd set up, using the tools you already have."),
     'privacy': ('Privacy policy | Second Wind Integration',
                 'How Second Wind Integration collects, uses and looks after your information, under the Australian Privacy Principles.'),
 }

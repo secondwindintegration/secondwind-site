@@ -467,7 +467,7 @@ body.lp .site .copyline { margin-top: 0; }
 .steps4 li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 800; margin-bottom: 12px; }
 .steps4 h3 { font-size: 20px; }
 .steps4 p { color: var(--ink-2); margin-top: 6px; font-size: 17px; }
-.back { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 18px; margin-bottom: 26px; }
+.back { display: flex; width: fit-content; gap: 8px; align-items: center; font-weight: 700; font-size: 18px; margin-bottom: 26px; }
 .legal { max-width: 760px; }
 .legal h2 { font-size: 26px; margin: 40px 0 12px; }
 .legal p, .legal li { color: var(--ink-2); }
@@ -666,7 +666,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
 .h2 { letter-spacing: -0.03em; }
 
 /* Hero: a calm moving wash of colour behind the headline */
-.hero { position: relative; isolation: isolate; overflow: hidden; }
+.hero { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
 .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: 50%; filter: blur(70px); opacity: .55; }
 .hero::before { width: 620px; height: 620px; top: -220px; right: -160px; background: radial-gradient(circle, color-mix(in srgb, var(--sky) 45%, transparent), transparent 65%); }
 .hero::after { width: 520px; height: 520px; bottom: -260px; left: -180px; background: radial-gradient(circle, color-mix(in srgb, var(--warm) 40%, transparent), transparent 65%); }
@@ -724,6 +724,73 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   details[open] > p { animation: rise .45s var(--ease-out) both; }
   .demo-tabs button, .tabs button { transition: background .25s, color .25s, border-color .25s, transform .2s var(--ease-out); }
   .demo-tabs button:hover, .tabs button:hover { transform: translateY(-1px); }
+}
+/* ==== Modern refresh round 2: icons, hero balance, lighter outline buttons, shorter phone pages, bolder motion ==== */
+.i { flex: none; display: block; }
+.demo-tabs button .i { width: 19px; height: 19px; }
+.toast .ti { color: var(--accent); }
+.toast .ti .i { width: 18px; height: 18px; }
+/* Hero balance on computers: the example card sits level with the headline, not floating low */
+@media (min-width: 921px) { .hero-grid { align-items: start; } .hero-grid > .showcase { margin-top: 64px; position: sticky; top: 110px; } }
+.show-label { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.show-label .demo-tag { margin-left: 0; }
+/* Lighter outline buttons */
+.btn-ghost { border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent); color: var(--ink); background: var(--surface); box-shadow: var(--shadow-1); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+.menu-btn { border-width: 1.5px; border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
+/* Wave under the hero, echoing the logo */
+.hero-wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 46px; pointer-events: none; z-index: -1; color: color-mix(in srgb, var(--accent) 14%, transparent); }
+.hero-wave path { fill: none; stroke: currentColor; stroke-width: 2; }
+.hero-wave path + path { color: color-mix(in srgb, var(--sky) 22%, transparent); }
+/* Fold-away lists on phones (tap to open); open as normal on bigger screens */
+.m-fold > summary { display: none; }
+@media (max-width: 700px) {
+  .m-fold { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 0 16px; margin-top: 20px; }
+  .m-fold:last-child { border-bottom: 1px solid var(--line); }
+  .m-fold > summary { display: block; font-size: 18px; padding: 16px 40px 16px 0; }
+  .m-fold > summary::after { top: 10px; }
+  .m-fold > ul { margin: 0 0 16px !important; }
+  /* Shorter homepage */
+  #home .hero .founding, #home > section:last-child { display: none; }
+  #home .hero .real-cap { display: none; }
+  .week-list { font-size: 17px; gap: 8px; }
+  .week-list .tick, .tc-list .tick, .proof-list .tick { width: 24px; height: 24px; font-size: 13px; }
+  .week-note { font-size: 17px; margin-top: 16px; }
+  .why-box { margin-top: 22px; }
+  .sec-head { margin-bottom: 24px; gap: 12px; }
+  section { padding-block: 44px; }
+  .hero { padding-block: 32px 48px; }
+  .mini-quote { margin-top: 16px; }
+  .hi-jake img { width: 140px; height: 161px; }
+}
+/* Tick marks pop in as lists arrive */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rv .tick { transform: scale(.4); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .3s; transition-delay: calc(var(--i, 0) * 90ms + .2s); }
+  .js .rv.in .tick { transform: none; opacity: 1; }
+  /* Headings: words rise into place */
+  .js .wd { display: inline-block; opacity: 0; transform: translateY(.45em) rotate(2deg); transition: opacity .6s var(--ease-out), transform .8s var(--ease-out); transition-delay: calc(var(--w) * 55ms); }
+  .js .words-in .wd { opacity: 1; transform: none; }
+  /* Logo waves draw themselves, and ripple on hover */
+  .brand svg path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 1.4s .2s var(--ease-out) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .brand:hover svg path { animation: draw 1.4s .2s var(--ease-out) forwards, ripple 1.2s ease-in-out; }
+  @keyframes ripple { 50% { transform: translateX(1.5px); } }
+  .hero-wave path { animation: wave 14s linear infinite; }
+  .hero-wave path + path { animation-duration: 20s; animation-direction: reverse; }
+  @keyframes wave { to { transform: translateX(-50%); } }
+  /* Service icons and step numbers pop */
+  .svc .ico { transition: transform .5s cubic-bezier(.34,1.56,.64,1), background .3s, color .3s; }
+  .svc article:hover .ico { transform: translateY(-3px) rotate(-6deg) scale(1.08); background: var(--accent); color: var(--accent-ink); }
+  .js .rv.steps-pop::before, .js .steps4 > .rv::before { transform: scale(.3); transition: transform .6s cubic-bezier(.34,1.56,.64,1); transition-delay: calc(var(--i, 0) * 90ms + .15s); }
+  .js .steps4 > .rv.in::before { transform: none; }
+  /* The active demo tab breathes */
+  .demo-tabs button[aria-selected="true"] { animation: breathe 2.6s ease-in-out infinite; }
+  @keyframes breathe { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent); } }
+  /* Thank-you message after a form is sent */
+  .thanks:not([hidden]) { animation: rise .6s var(--ease-out) both; }
+  /* Tilt on the example card and phone demo (mouse only, set by script) */
+  .tilt { transition: transform .5s var(--ease-out); transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); will-change: transform; }
+  .device.tilt { animation: none; }
 }
 </style>
 
@@ -811,10 +878,10 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   <div class="wrap">
     <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
     <div class="demo-tabs" role="tablist" aria-label="Examples">
-      <button type="button" role="tab" data-scene="call" aria-selected="true">📞 Missed call</button>
-      <button type="button" role="tab" data-scene="chat" aria-selected="false">💬 Website chat</button>
-      <button type="button" role="tab" data-scene="paid" aria-selected="false">💵 Unpaid invoice</button>
-      <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
+      <button type="button" role="tab" data-scene="call" aria-selected="true"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Missed call</button>
+      <button type="button" role="tab" data-scene="chat" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>Website chat</button>
+      <button type="button" role="tab" data-scene="paid" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Unpaid invoice</button>
+      <button type="button" role="tab" data-scene="post" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>New stock post</button>
     </div>
     <div class="stage-wrap">
       <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
@@ -1285,10 +1352,10 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate: customers answered, even when you're closed, and less admin for you.</p>
       <div class="toasts" aria-label="Example of what's waiting for you in the morning">
         <p class="toasts-h">Your morning, sorted <span class="demo-tag">Example</span></p>
-        <div class="toast"><span class="ti">💬</span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
-        <div class="toast"><span class="ti">📞</span><span><b>Missed call</b> at 4:52 pm texted back straight away</span></div>
-        <div class="toast"><span class="ti">💵</span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
-        <div class="toast"><span class="ti">📸</span><span><b>New stock post</b> drafted and ready to schedule</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span><b>Missed call</b> at 4:52 pm texted back straight away</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span><b>New stock post</b> drafted and ready to schedule</span></div>
       </div>
       <div class="lp-later">
       <p class="lede" style="margin-top:20px">We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date. Helpers use AI to draft, and nothing goes out without your OK.</p>
@@ -1336,10 +1403,10 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   <div class="wrap">
     <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
     <div class="demo-tabs" role="tablist" aria-label="Examples">
-      <button type="button" role="tab" data-scene="call" aria-selected="true">📞 Missed call</button>
-      <button type="button" role="tab" data-scene="chat" aria-selected="false">💬 Website chat</button>
-      <button type="button" role="tab" data-scene="paid" aria-selected="false">💵 Unpaid invoice</button>
-      <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
+      <button type="button" role="tab" data-scene="call" aria-selected="true"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Missed call</button>
+      <button type="button" role="tab" data-scene="chat" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>Website chat</button>
+      <button type="button" role="tab" data-scene="paid" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Unpaid invoice</button>
+      <button type="button" role="tab" data-scene="post" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>New stock post</button>
     </div>
     <div class="stage-wrap">
       <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
@@ -1999,6 +2066,46 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   // Gentle fade when moving between pages
   const mo = new MutationObserver(ms => ms.forEach(m => { const p = m.target; if (!p.hidden) { p.classList.remove('enter'); void p.offsetWidth; p.classList.add('enter'); } }));
   document.querySelectorAll('main.page').forEach(p => mo.observe(p, { attributes: true, attributeFilter: ['hidden'] }));
+})();
+</script>
+<script>
+/* Modern refresh round 2: hero wave, phone fold-aways, heading words, tilt, parallax, magnetic main buttons */
+(() => {
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // Wave line along the bottom of each hero (decoration)
+  const wave = 'M0 20 C 60 4, 120 36, 180 20 S 300 4, 360 20 S 480 36, 540 20 S 660 4, 720 20 S 840 36, 900 20 S 1020 4, 1080 20 S 1200 36, 1260 20 S 1380 4, 1440 20 S 1560 36, 1620 20 S 1740 4, 1800 20 S 1920 36, 1980 20 S 2100 4, 2160 20 S 2280 36, 2340 20 S 2460 4, 2520 20 S 2640 36, 2700 20 S 2820 4, 2880 20';
+  document.querySelectorAll('.hero').forEach(h => h.insertAdjacentHTML('beforeend', `<svg class="hero-wave" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="${wave}"/><path d="${wave}" transform="translate(0 8)"/></svg>`));
+  // Phones: long lists fold away behind a tap-to-open heading
+  const folds = [['#tech-check .tc-list', 'What we look at in your shop'], ['#proof .proof-list', 'What we set up for Julia’s Fabric'], ['#start .tc-list', 'What we look at in your shop']];
+  const phone = matchMedia('(max-width: 700px)');
+  const made = [];
+  folds.forEach(([sel, label]) => { const list = document.querySelector(sel); if (!list || list.closest('details')) return;
+    const d = document.createElement('details'); d.className = 'm-fold'; d.innerHTML = '<summary></summary>'; d.firstChild.textContent = label;
+    list.before(d); d.appendChild(list); made.push(d); });
+  const sync = () => made.forEach(d => { d.open = !phone.matches; });
+  sync(); phone.addEventListener ? phone.addEventListener('change', sync) : phone.addListener(sync);
+  if (calm) return;
+  // Section headings: split into words that rise in turn
+  const hs = document.querySelectorAll('.sec-head .h2, section .h2, .page > section:first-child h1:not(.hero h1)');
+  const hio = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('words-in'); hio.unobserve(e.target); } }), { threshold: .3 }) : null;
+  hs.forEach(h => { if (h.querySelector('*') || !hio) return; const words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim()); h.textContent = '';
+    words.forEach((w, i) => { const s = document.createElement('span'); s.className = 'wd'; s.setAttribute('aria-hidden', 'true'); s.style.setProperty('--w', i); s.textContent = w; h.appendChild(s); if (i < words.length - 1) h.appendChild(document.createTextNode(' ')); });
+    hio.observe(h); });
+  if (!fine) return;
+  // Gentle 3D tilt on the example card and the phone demo
+  document.querySelectorAll('.msg-card, .device, .real-card').forEach(c => { c.classList.add('tilt');
+    c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg'); c.style.setProperty('--rx', (-y * 6).toFixed(2) + 'deg'); });
+    c.addEventListener('pointerleave', () => { c.style.setProperty('--ry', '0deg'); c.style.setProperty('--rx', '0deg'); }); });
+  // Main buttons lean a little towards the pointer
+  document.querySelectorAll('.btn-lg.btn-primary').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * 8}px, ${((e.clientY - r.top) / r.height - .5) * 6 - 2}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; }); });
+  // Hero colour wash drifts a touch as you scroll
+  let raf = 0; addEventListener('scroll', () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0;
+    document.querySelectorAll('.page:not([hidden]) .hero-grid > .showcase').forEach(s => { if (getComputedStyle(s).position !== 'sticky') s.style.translate = `0 ${Math.min(scrollY, 600) * -0.06}px`; }); }); }, { passive: true });
 })();
 </script>
 </body>

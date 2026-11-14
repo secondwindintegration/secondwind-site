@@ -467,7 +467,7 @@ body.lp .site .copyline { margin-top: 0; }
 .steps4 li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 800; margin-bottom: 12px; }
 .steps4 h3 { font-size: 20px; }
 .steps4 p { color: var(--ink-2); margin-top: 6px; font-size: 17px; }
-.back { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 18px; margin-bottom: 26px; }
+.back { display: flex; width: fit-content; gap: 8px; align-items: center; font-weight: 700; font-size: 18px; margin-bottom: 26px; }
 .legal { max-width: 760px; }
 .legal h2 { font-size: 26px; margin: 40px 0 12px; }
 .legal p, .legal li { color: var(--ink-2); }
@@ -612,6 +612,192 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   #home #packages .tier p.muted { display: none; }
   #home #packages .tier .badge { order: 2; }
 }
+/* ==== Modern refresh 2026-11 (look and motion only; copy, prices and forms unchanged) ==== */
+@property --spin { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+:root { --sky: #5b8fd6; --warm: #f2c46d; --r-lg: 22px; --shadow-1: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.14); --shadow-2: 0 2px 4px rgba(16,24,40,.05), 0 24px 48px -20px rgba(16,24,40,.28); --ease-out: cubic-bezier(.22,1,.36,1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --shadow-1: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6); --shadow-2: 0 2px 4px rgba(0,0,0,.3), 0 24px 48px -20px rgba(0,0,0,.7); } }
+:root[data-theme="dark"] { --shadow-1: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6); --shadow-2: 0 2px 4px rgba(0,0,0,.3), 0 24px 48px -20px rgba(0,0,0,.7); }
+
+/* Glass top bar that firms up when you scroll, with a thin reading-progress line */
+.nav { background: color-mix(in srgb, var(--surface) 82%, transparent); -webkit-backdrop-filter: saturate(1.6) blur(14px); backdrop-filter: saturate(1.6) blur(14px); border-bottom-color: transparent; transition: box-shadow .3s, border-color .3s, background .3s; }
+.nav.scrolled { background: color-mix(in srgb, var(--surface) 92%, transparent); border-bottom-color: var(--line); box-shadow: 0 10px 30px -22px rgba(16,24,40,.35); }
+.nav .wrap { transition: min-height .3s var(--ease-out); }
+@media (min-width: 641px) { .nav.scrolled .wrap { min-height: 68px; } }
+.nav-progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--accent), var(--sky)); pointer-events: none; }
+.nav-links a:not(.menu-call) { position: relative; }
+@media (min-width: 1081px) {
+  .nav-links a:not(.menu-call)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s var(--ease-out); }
+  .nav-links a:hover { text-decoration: none; }
+  .nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+  .nav-links a[aria-current="page"] { text-decoration: none; }
+}
+
+/* Kicker becomes a small chip with a live dot */
+.kicker { display: inline-flex; align-items: flex-start; gap: 8px; line-height: 1.4; justify-self: start; align-self: flex-start; width: fit-content; padding: 6px 14px 6px 12px; border-radius: 16px; background: var(--accent-soft); color: var(--accent); font-size: 14px; letter-spacing: .06em; }
+.kicker::before { content: ""; flex: none; margin-top: .42em; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+.why-box .kicker { background: var(--surface); }
+
+/* Buttons: soft depth, lift on hover, a light sheen sweeping across */
+.btn { position: relative; overflow: hidden; border-radius: 14px; transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out), background .2s, border-color .2s, color .2s; }
+.btn-primary { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 88%, #fff), var(--accent)); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 22px -12px color-mix(in srgb, var(--accent) 80%, transparent); }
+.btn-primary:hover { background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 85%, var(--ink))); }
+.btn-primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%); transform: translateX(-120%); pointer-events: none; }
+.btn-ghost { border-width: 2px; background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.btn:active { transform: translateY(0) scale(.98); }
+
+/* Cards: rounder, softer shadows, gentle lift and a light that follows the pointer */
+.tile, .tier, .svc article, .steps4 li, .side, .teaser, .ba div, .form, .calc, .pack-card, .price-step, .fit-wrap, .reply, .draft, .real-card, .msg-card, .why-box, .founding, .promise, .from-price { border-radius: var(--r-lg); }
+.tile, .tier, .svc article, .steps4 li, .side, .teaser, .ba div, .price-step { position: relative; box-shadow: var(--shadow-1); transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out), border-color .3s; }
+.form, .calc, .pack-card { box-shadow: var(--shadow-2); }
+.tile::before, .tier::before, .svc article::before, .steps4 li::before { pointer-events: none; }
+.glow { --mx: 50%; --my: 50%; }
+.glow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s; background: radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--sky) 14%, transparent), transparent 60%); }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover, .tier:hover, .svc article:hover, .steps4 li:hover, .side:hover, .ba div:hover, .price-step:hover { transform: translateY(-6px); box-shadow: var(--shadow-2); }
+  .glow:hover::after { opacity: 1; }
+}
+/* Featured package: a slowly turning gradient outline */
+.tier.feat { border: 2px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, conic-gradient(from var(--spin), var(--accent), var(--sky), var(--warm), var(--sky), var(--accent)) border-box; }
+.badge { background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--sky))); box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--accent) 80%, transparent); }
+
+/* Softer section bands */
+.line { border-top-color: color-mix(in srgb, var(--line) 60%, transparent); }
+.tint { background: linear-gradient(180deg, var(--bg-2), color-mix(in srgb, var(--bg-2) 55%, var(--bg))); }
+.h2 { letter-spacing: -0.03em; }
+
+/* Hero: a calm moving wash of colour behind the headline */
+.hero { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+.hero::before, .hero::after { content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.hero::before { width: 620px; height: 620px; top: -220px; right: -160px; background: radial-gradient(circle, color-mix(in srgb, var(--sky) 45%, transparent), transparent 65%); }
+.hero::after { width: 520px; height: 520px; bottom: -260px; left: -180px; background: radial-gradient(circle, color-mix(in srgb, var(--warm) 40%, transparent), transparent 65%); }
+.hero > .wrap { position: relative; }
+.hero-grid::before { content: ""; position: absolute; inset: -40px -20px; z-index: -1; pointer-events: none; background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1.4px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 60% 70% at 75% 40%, #000, transparent 70%); mask-image: radial-gradient(ellipse 60% 70% at 75% 40%, #000, transparent 70%); opacity: .5; }
+.hero h1 { letter-spacing: -0.035em; }
+.msg-card { background: color-mix(in srgb, var(--bg-2) 80%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: var(--shadow-2); }
+.jake-line img { box-shadow: 0 0 0 2px var(--accent-soft), 0 6px 14px -6px rgba(0,0,0,.35); }
+
+/* Photos */
+.hi-jake img, .portrait, .shot img { box-shadow: var(--shadow-2); }
+.hi-jake img { border-radius: 26px; }
+.device { box-shadow: 0 50px 80px -40px rgba(16,24,40,.55), 0 0 0 1px rgba(255,255,255,.06) inset; }
+
+/* FAQ */
+summary { transition: color .2s; }
+summary:hover { color: var(--accent); }
+summary::after { transition: transform .3s var(--ease-out); }
+details[open] summary::after { content: "+"; transform: rotate(45deg); }
+
+footer.site { position: relative; }
+footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), var(--sky), transparent); opacity: .5; }
+.mbar { background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+
+/* ---- Motion (only for people who haven't turned motion off) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .kicker::before { animation: ping 2.4s ease-out infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 70%, 100% { box-shadow: 0 0 0 8px transparent; } }
+  .btn-primary:hover::after { transform: translateX(120%); transition: transform .8s var(--ease-out); }
+  @media (hover: hover) { .btn:hover { transform: translateY(-2px); } .btn-primary:hover { box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 16px 30px -14px color-mix(in srgb, var(--accent) 90%, transparent); } }
+  .tier.feat { animation: spin 9s linear infinite; }
+  @keyframes spin { to { --spin: 360deg; } }
+  .hero::before { animation: drift1 18s ease-in-out infinite alternate; }
+  .hero::after { animation: drift2 22s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(-120px, 90px) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(140px, -70px) scale(1.1); } }
+  .device { animation: float 7s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  /* Hero walks in, one piece at a time */
+  .js .hero-grid > div:first-child > *, .js .lp-hero > .lp-copy > *, .js .hero-grid > .showcase { animation: rise .9s var(--ease-out) both; }
+  .js .hero-grid > div:first-child > :nth-child(2), .js .lp-hero > .lp-copy > :nth-child(2) { animation-delay: .08s; }
+  .js .hero-grid > div:first-child > :nth-child(3), .js .lp-hero > .lp-copy > :nth-child(3) { animation-delay: .16s; }
+  .js .hero-grid > div:first-child > :nth-child(4), .js .lp-hero > .lp-copy > :nth-child(4) { animation-delay: .24s; }
+  .js .hero-grid > div:first-child > :nth-child(n+5), .js .lp-hero > .lp-copy > :nth-child(n+5) { animation-delay: .32s; }
+  .js .hero-grid > .showcase { animation-delay: .25s; animation-duration: 1.1s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+  /* Page switch */
+  main.page.enter { animation: pageIn .55s var(--ease-out) both; }
+  @keyframes pageIn { from { opacity: 0; transform: translateY(12px); } }
+  /* Scroll reveal: items in a group come in one after another */
+  .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+  .js .rv.in { opacity: 1; transform: none; }
+  .js .rv-img { clip-path: inset(12% 12% 12% 12% round 26px); opacity: 0; transition: clip-path 1.1s var(--ease-out), opacity .6s; }
+  .js .rv-img.in { clip-path: inset(0 0 0 0 round 26px); opacity: 1; }
+  details[open] > p { animation: rise .45s var(--ease-out) both; }
+  .demo-tabs button, .tabs button { transition: background .25s, color .25s, border-color .25s, transform .2s var(--ease-out); }
+  .demo-tabs button:hover, .tabs button:hover { transform: translateY(-1px); }
+}
+/* ==== Modern refresh round 2: icons, hero balance, lighter outline buttons, shorter phone pages, bolder motion ==== */
+.i { flex: none; display: block; }
+.demo-tabs button .i { width: 19px; height: 19px; }
+.toast .ti { color: var(--accent); }
+.toast .ti .i { width: 18px; height: 18px; }
+/* Hero balance on computers: the example card sits level with the headline, not floating low */
+@media (min-width: 921px) { .hero-grid { align-items: start; } .hero-grid > .showcase { margin-top: 64px; position: sticky; top: 110px; } }
+.show-label { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.show-label .demo-tag { margin-left: 0; }
+/* Lighter outline buttons */
+.btn-ghost { border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent); color: var(--ink); background: var(--surface); box-shadow: var(--shadow-1); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+.menu-btn { border-width: 1.5px; border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
+/* Wave under the hero, echoing the logo */
+.hero-wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 46px; pointer-events: none; z-index: -1; color: color-mix(in srgb, var(--accent) 14%, transparent); }
+.hero-wave path { fill: none; stroke: currentColor; stroke-width: 2; }
+.hero-wave path + path { color: color-mix(in srgb, var(--sky) 22%, transparent); }
+/* Fold-away lists on phones (tap to open); open as normal on bigger screens */
+.m-fold > summary { display: none; }
+@media (max-width: 700px) {
+  .m-fold { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 0 16px; margin-top: 20px; }
+  .m-fold:last-child { border-bottom: 1px solid var(--line); }
+  .m-fold > summary { display: block; font-size: 18px; padding: 16px 40px 16px 0; }
+  .m-fold > summary::after { top: 10px; }
+  .m-fold > ul { margin: 0 0 16px !important; }
+  /* Shorter homepage */
+  #home .hero .founding, #home > section:last-child { display: none; }
+  #home .hero .real-cap { display: none; }
+  .week-list { font-size: 17px; gap: 8px; }
+  .week-list .tick, .tc-list .tick, .proof-list .tick { width: 24px; height: 24px; font-size: 13px; }
+  .week-note { font-size: 17px; margin-top: 16px; }
+  .why-box { margin-top: 22px; }
+  .sec-head { margin-bottom: 24px; gap: 12px; }
+  section { padding-block: 44px; }
+  .hero { padding-block: 32px 48px; }
+  .mini-quote { margin-top: 16px; }
+  .hi-jake img { width: 140px; height: 161px; }
+}
+/* Tick marks pop in as lists arrive */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rv .tick { transform: scale(.4); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .3s; transition-delay: calc(var(--i, 0) * 90ms + .2s); }
+  .js .rv.in .tick { transform: none; opacity: 1; }
+  /* Headings: words rise into place */
+  .js .wd { display: inline-block; opacity: 0; transform: translateY(.45em) rotate(2deg); transition: opacity .6s var(--ease-out), transform .8s var(--ease-out); transition-delay: calc(var(--w) * 55ms); }
+  .js .words-in .wd { opacity: 1; transform: none; }
+  /* Logo waves draw themselves, and ripple on hover */
+  .brand svg path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 1.4s .2s var(--ease-out) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .brand:hover svg path { animation: draw 1.4s .2s var(--ease-out) forwards, ripple 1.2s ease-in-out; }
+  @keyframes ripple { 50% { transform: translateX(1.5px); } }
+  .hero-wave path { animation: wave 14s linear infinite; }
+  .hero-wave path + path { animation-duration: 20s; animation-direction: reverse; }
+  @keyframes wave { to { transform: translateX(-50%); } }
+  /* Service icons and step numbers pop */
+  .svc .ico { transition: transform .5s cubic-bezier(.34,1.56,.64,1), background .3s, color .3s; }
+  .svc article:hover .ico { transform: translateY(-3px) rotate(-6deg) scale(1.08); background: var(--accent); color: var(--accent-ink); }
+  .js .rv.steps-pop::before, .js .steps4 > .rv::before { transform: scale(.3); transition: transform .6s cubic-bezier(.34,1.56,.64,1); transition-delay: calc(var(--i, 0) * 90ms + .15s); }
+  .js .steps4 > .rv.in::before { transform: none; }
+  /* The active demo tab breathes */
+  .demo-tabs button[aria-selected="true"] { animation: breathe 2.6s ease-in-out infinite; }
+  @keyframes breathe { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent); } }
+  /* Thank-you message after a form is sent */
+  .thanks:not([hidden]) { animation: rise .6s var(--ease-out) both; }
+  /* Tilt on the example card and phone demo (mouse only, set by script) */
+  .tilt { transition: transform .5s var(--ease-out); transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); will-change: transform; }
+  .device.tilt { animation: none; }
+}
+@media (max-width: 700px) {
+  #home .hero .showcase { display: none; }
+  #home #in-action .stage-note { display: none; }
+  #home #in-action .screen { height: 400px; }
+  #proof .real-card { max-width: 250px; }
+}
 </style>
 
 </head>
@@ -684,7 +870,6 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <li><span class="tick">✓</span>Updating your hours on Google, Facebook and your website</li>
       <li><span class="tick">✓</span>Paying for software you're not sure you need, or can't get out of</li>
     </ul>
-    <p class="week-note">Answering the same customer questions over and over adds up to hours every week. We help you get a big chunk of that time back.</p>
     <div class="why-box">
       <p class="kicker">Why now</p>
       <h3>Are the shops down the road already using AI?</h3>
@@ -698,10 +883,10 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   <div class="wrap">
     <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
     <div class="demo-tabs" role="tablist" aria-label="Examples">
-      <button type="button" role="tab" data-scene="call" aria-selected="true">📞 Missed call</button>
-      <button type="button" role="tab" data-scene="chat" aria-selected="false">💬 Website chat</button>
-      <button type="button" role="tab" data-scene="paid" aria-selected="false">💵 Unpaid invoice</button>
-      <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
+      <button type="button" role="tab" data-scene="call" aria-selected="true"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Missed call</button>
+      <button type="button" role="tab" data-scene="chat" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>Website chat</button>
+      <button type="button" role="tab" data-scene="paid" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Unpaid invoice</button>
+      <button type="button" role="tab" data-scene="post" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>New stock post</button>
     </div>
     <div class="stage-wrap">
       <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
@@ -737,7 +922,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
         <li><span class="tick">✓</span>3 time-savers you can start on straight away</li>
       </ul>
       <p class="alt-link">Rather pick a time yourself? <a href="#zoom-chat">Choose a time on the calendar</a>.</p>
-      <div class="promise" style="margin-top:28px"><span class="tick" style="width:36px;height:36px;font-size:20px">✓</span><div><b>Our promise</b><p class="muted">If something we set up isn't saving you time within 60 days, we'll keep working on it at no charge until it does. This is on top of your rights under Australian Consumer Law.</p></div></div>
+      <p class="alt-link">Everything we set up comes with our <a href="#prices">60-day promise</a>: if it isn't saving you time, we keep working on it at no charge.</p>
     </div>
     <form class="form lead-form" id="home-form" name="techcheck-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="techcheck" aria-label="Book a Shop Tech Check" novalidate>
       <input type="hidden" name="form-name" value="techcheck-enquiry">
@@ -797,26 +982,11 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <h2 class="h2" style="margin-top:14px">A real person you can ring</h2>
       <p class="lede" style="margin-top:16px">I'm Jake McGrath. We work with shops all over Australia over Zoom. I started Second Wind because I kept seeing good shop owners buried in admin and sold tech they didn't need. We do the techy bits, you stay in charge, and we never lock you in.</p>
       <div class="tease-btns"><a class="btn btn-primary" href="tel:0417813548">Ring Jake: 0417 813 548</a><a class="btn btn-ghost" href="#about">More about Jake</a></div>
+      <p class="alt-link">Got a question first? <a href="#faq">See common questions</a>.</p>
     </div>
   </div>
 </section>
 
-<section class="line tint" id="home-faq">
-  <div class="wrap faq home-faq">
-    <div>
-      <p class="kicker">Common questions</p>
-      <h2 class="h2" style="margin-top:14px">Straight answers</h2>
-      <p class="lede" style="margin-top:16px">Can't find your question? Ring us on <a href="tel:0417813548">0417 813 548</a>, or see <a href="#faq">more questions</a>.</p>
-    </div>
-    <div>
-      <details open><summary>Is this complicated?</summary><p>No. We set everything up and show you how it works step by step, and you get a printed guide to keep.</p></details>
-      <details><summary>What if it sends something wrong?</summary><p>It won't send anything without your OK. You see every reply first, and you can change it or bin it.</p></details>
-      <details><summary>I'm not techy. Is this for me?</summary><p>That's exactly who we built this for. If you can use email and Facebook, you can use this.</p></details>
-      <details><summary>What does it cost?</summary><p>You start with a free Shop Tech Check. Founding Shops get 40% off any package, from A$900, and you'll know the full price before we start. <a href="#pack">See full prices</a>.</p></details>
-      <details><summary>Am I locked in?</summary><p>No. Everything is set up in your name, with your logins, and Care is month to month with 30 days' notice.</p></details>
-    </div>
-  </div>
-</section>
 
 <section class="line">
   <div class="wrap">
@@ -1042,6 +1212,7 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <details open><summary>Do I need to be good with computers?</summary><p>No. If you can use Facebook and email, you can use this. We train you at your pace, over Zoom or in person by arrangement, and leave you a printed guide.</p></details>
       <details><summary>Will AI send things without me knowing?</summary><p>No. It won't send anything without your OK. Every email, post, customer reply and review reply waits for you to check it first.</p></details>
       <details><summary>Who owns the accounts?</summary><p>You do. Everything is set up in your name, with your logins.</p></details>
+      <details><summary>Am I locked in?</summary><p>No. Everything is set up in your name, with your logins, and Care is month to month with 30 days' notice.</p></details>
       <details><summary>What if you're not around?</summary><p>You get a printed guide, your login list and a one-page plan to keep. Nothing locks you in.</p></details>
       <details><summary>What will it cost me each month?</summary><p>Usually about A$30 to A$150 for your own software, plus a Care plan if you want one. Care is A$250 a month. Care Plus is A$450 a month. The exact amount is in your quote. Founding Shops include Care for the first 3 months.</p></details>
       <details><summary>Does it work with my till or shop system?</summary><p>Usually, yes. Tell us what you use in your free Tech Check and we'll check.</p></details>
@@ -1172,10 +1343,10 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
       <p class="lede" style="margin-top:20px">Tell us a bit about your shop and we'll show you what we can take off your plate: customers answered, even when you're closed, and less admin for you.</p>
       <div class="toasts" aria-label="Example of what's waiting for you in the morning">
         <p class="toasts-h">Your morning, sorted <span class="demo-tag">Example</span></p>
-        <div class="toast"><span class="ti">💬</span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
-        <div class="toast"><span class="ti">📞</span><span><b>Missed call</b> at 4:52 pm texted back straight away</span></div>
-        <div class="toast"><span class="ti">💵</span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
-        <div class="toast"><span class="ti">📸</span><span><b>New stock post</b> drafted and ready to schedule</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span><b>3 customer questions</b> answered overnight, waiting for your OK</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span><b>Missed call</b> at 4:52 pm texted back straight away</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span><b>Invoice 1042</b> paid after a friendly reminder</span></div>
+        <div class="toast"><span class="ti"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span><b>New stock post</b> drafted and ready to schedule</span></div>
       </div>
       <div class="lp-later">
       <p class="lede" style="margin-top:20px">We set up simple helpers that answer customer questions, sort enquiries and keep your shop info up to date. Helpers use AI to draft, and nothing goes out without your OK.</p>
@@ -1223,10 +1394,10 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
   <div class="wrap">
     <div class="sec-head"><p class="kicker">See it in action</p><h2 class="h2">What your helpers do while you're busy</h2><p class="lede">Watch a few of the helpers we set up. Tap one to see it. These are examples, not real customers.</p></div>
     <div class="demo-tabs" role="tablist" aria-label="Examples">
-      <button type="button" role="tab" data-scene="call" aria-selected="true">📞 Missed call</button>
-      <button type="button" role="tab" data-scene="chat" aria-selected="false">💬 Website chat</button>
-      <button type="button" role="tab" data-scene="paid" aria-selected="false">💵 Unpaid invoice</button>
-      <button type="button" role="tab" data-scene="post" aria-selected="false">📸 New stock post</button>
+      <button type="button" role="tab" data-scene="call" aria-selected="true"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Missed call</button>
+      <button type="button" role="tab" data-scene="chat" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>Website chat</button>
+      <button type="button" role="tab" data-scene="paid" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Unpaid invoice</button>
+      <button type="button" role="tab" data-scene="post" aria-selected="false"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>New stock post</button>
     </div>
     <div class="stage-wrap">
       <div class="device" aria-hidden="true"><div class="screen"><div class="screen-top"></div><div class="feed"></div></div></div>
@@ -1840,5 +2011,93 @@ mark.hl { color: inherit; background: linear-gradient(transparent 58%, #f7d774 5
 })();
 </script>
 
+<script>
+/* Modern refresh: top bar, staggered reveals, pointer light on cards, count-ups, page fade. Look and motion only. */
+(() => {
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nav = document.querySelector('.nav');
+  const bar = document.createElement('span'); bar.className = 'nav-progress'; bar.setAttribute('aria-hidden', 'true'); nav.appendChild(bar);
+  let tick = false;
+  const onScroll = () => { tick = false; const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('scrolled', y > 8); bar.style.setProperty('--p', h > 0 ? Math.min(1, y / h).toFixed(4) : 0); };
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // Pointer light on cards (mouse only)
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.tile, .tier, .svc article, .steps4 li, .side, .ba div, .price-step').forEach(c => {
+      c.classList.add('glow');
+      c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
+    });
+  }
+  if (calm || !('IntersectionObserver' in window)) return;
+
+  // Staggered reveal for groups of cards, lists and questions
+  const groups = '.tiers, .tiles, .svc, .steps4, .method, .outcomes, .checks:not(.hero .checks), .ba, .metrics, .side-tiers, .next-steps, .faq > div:last-child, .demo-tabs, .trust, .foot';
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll(groups).forEach(g => {
+    if (g.closest('.hero-grid, .lp-copy')) return;
+    [...g.children].forEach((c, i) => { if (c.matches('input, [hidden]')) return; c.classList.add('rv'); c.style.setProperty('--i', Math.min(i, 8)); io.observe(c); });
+  });
+  document.querySelectorAll('.hi-jake img, .portrait, .lp-me img').forEach(i => { i.classList.add('rv-img'); io.observe(i); });
+
+  // Count up numbers as they come into view (the real figures, shown in full at the end)
+  const countUp = (el) => {
+    const node = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.textContent)); if (!node) return;
+    const final = node.textContent, nums = final.match(/\d[\d,]*/g); if (!nums) return;
+    const t0 = performance.now(), dur = 1300;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); let j = 0;
+      node.textContent = final.replace(/\d[\d,]*/g, m => { const v = +nums[j++].replace(/,/g, ''); return Math.round(v * e).toLocaleString('en-AU'); });
+      if (k < 1) requestAnimationFrame(step); else node.textContent = final; };
+    requestAnimationFrame(step);
+  };
+  const cio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } }), { threshold: .6 });
+  document.querySelectorAll('#julia-result b, .metrics b').forEach(el => cio.observe(el));
+
+  // Gentle fade when moving between pages
+  const mo = new MutationObserver(ms => ms.forEach(m => { const p = m.target; if (!p.hidden) { p.classList.remove('enter'); void p.offsetWidth; p.classList.add('enter'); } }));
+  document.querySelectorAll('main.page').forEach(p => mo.observe(p, { attributes: true, attributeFilter: ['hidden'] }));
+})();
+</script>
+<script>
+/* Modern refresh round 2: hero wave, phone fold-aways, heading words, tilt, parallax, magnetic main buttons */
+(() => {
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // Wave line along the bottom of each hero (decoration)
+  const wave = 'M0 20 C 60 4, 120 36, 180 20 S 300 4, 360 20 S 480 36, 540 20 S 660 4, 720 20 S 840 36, 900 20 S 1020 4, 1080 20 S 1200 36, 1260 20 S 1380 4, 1440 20 S 1560 36, 1620 20 S 1740 4, 1800 20 S 1920 36, 1980 20 S 2100 4, 2160 20 S 2280 36, 2340 20 S 2460 4, 2520 20 S 2640 36, 2700 20 S 2820 4, 2880 20';
+  document.querySelectorAll('.hero').forEach(h => h.insertAdjacentHTML('beforeend', `<svg class="hero-wave" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="${wave}"/><path d="${wave}" transform="translate(0 8)"/></svg>`));
+  // Phones: long lists fold away behind a tap-to-open heading
+  const folds = [['#tech-check .tc-list', 'What we look at in your shop'], ['#proof .proof-list', 'What we set up for Julia’s Fabric'], ['#start .tc-list', 'What we look at in your shop']];
+  const phone = matchMedia('(max-width: 700px)');
+  const made = [];
+  folds.forEach(([sel, label]) => { const list = document.querySelector(sel); if (!list || list.closest('details')) return;
+    const d = document.createElement('details'); d.className = 'm-fold'; d.innerHTML = '<summary></summary>'; d.firstChild.textContent = label;
+    list.before(d); d.appendChild(list); made.push(d); });
+  const sync = () => made.forEach(d => { d.open = !phone.matches; });
+  sync(); phone.addEventListener ? phone.addEventListener('change', sync) : phone.addListener(sync);
+  if (calm) return;
+  // Section headings: split into words that rise in turn
+  const hs = document.querySelectorAll('.sec-head .h2, section .h2, .page > section:first-child h1:not(.hero h1)');
+  const hio = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('words-in'); hio.unobserve(e.target); } }), { threshold: .3 }) : null;
+  hs.forEach(h => { if (h.querySelector('*') || !hio) return; const words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim()); h.textContent = '';
+    words.forEach((w, i) => { const s = document.createElement('span'); s.className = 'wd'; s.setAttribute('aria-hidden', 'true'); s.style.setProperty('--w', i); s.textContent = w; h.appendChild(s); if (i < words.length - 1) h.appendChild(document.createTextNode(' ')); });
+    hio.observe(h); });
+  if (!fine) return;
+  // Gentle 3D tilt on the example card and the phone demo
+  document.querySelectorAll('.msg-card, .device, .real-card').forEach(c => { c.classList.add('tilt');
+    c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg'); c.style.setProperty('--rx', (-y * 6).toFixed(2) + 'deg'); });
+    c.addEventListener('pointerleave', () => { c.style.setProperty('--ry', '0deg'); c.style.setProperty('--rx', '0deg'); }); });
+  // Main buttons lean a little towards the pointer
+  document.querySelectorAll('.btn-lg.btn-primary').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * 8}px, ${((e.clientY - r.top) / r.height - .5) * 6 - 2}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; }); });
+  // Hero colour wash drifts a touch as you scroll
+  let raf = 0; addEventListener('scroll', () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0;
+    document.querySelectorAll('.page:not([hidden]) .hero-grid > .showcase').forEach(s => { if (getComputedStyle(s).position !== 'sticky') s.style.translate = `0 ${Math.min(scrollY, 600) * -0.06}px`; }); }); }, { passive: true });
+})();
+</script>
 </body>
 </html>

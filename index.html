@@ -792,6 +792,12 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   .tilt { transition: transform .5s var(--ease-out); transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); will-change: transform; }
   .device.tilt { animation: none; }
 }
+@media (max-width: 700px) {
+  #home .hero .showcase { display: none; }
+  #home #in-action .stage-note { display: none; }
+  #home #in-action .screen { height: 400px; }
+  #proof .real-card { max-width: 250px; }
+}
 </style>
 
 </head>
@@ -864,7 +870,6 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <li><span class="tick">✓</span>Updating your hours on Google, Facebook and your website</li>
       <li><span class="tick">✓</span>Paying for software you're not sure you need, or can't get out of</li>
     </ul>
-    <p class="week-note">Answering the same customer questions over and over adds up to hours every week. We help you get a big chunk of that time back.</p>
     <div class="why-box">
       <p class="kicker">Why now</p>
       <h3>Are the shops down the road already using AI?</h3>
@@ -917,7 +922,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
         <li><span class="tick">✓</span>3 time-savers you can start on straight away</li>
       </ul>
       <p class="alt-link">Rather pick a time yourself? <a href="#zoom-chat">Choose a time on the calendar</a>.</p>
-      <div class="promise" style="margin-top:28px"><span class="tick" style="width:36px;height:36px;font-size:20px">✓</span><div><b>Our promise</b><p class="muted">If something we set up isn't saving you time within 60 days, we'll keep working on it at no charge until it does. This is on top of your rights under Australian Consumer Law.</p></div></div>
+      <p class="alt-link">Everything we set up comes with our <a href="#prices">60-day promise</a>: if it isn't saving you time, we keep working on it at no charge.</p>
     </div>
     <form class="form lead-form" id="home-form" name="techcheck-enquiry" method="POST" action="/enquiry.html" data-netlify="true" netlify-honeypot="company" data-src="techcheck" aria-label="Book a Shop Tech Check" novalidate>
       <input type="hidden" name="form-name" value="techcheck-enquiry">
@@ -977,26 +982,11 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <h2 class="h2" style="margin-top:14px">A real person you can ring</h2>
       <p class="lede" style="margin-top:16px">I'm Jake McGrath. We work with shops all over Australia over Zoom. I started Second Wind because I kept seeing good shop owners buried in admin and sold tech they didn't need. We do the techy bits, you stay in charge, and we never lock you in.</p>
       <div class="tease-btns"><a class="btn btn-primary" href="tel:0417813548">Ring Jake: 0417 813 548</a><a class="btn btn-ghost" href="#about">More about Jake</a></div>
+      <p class="alt-link">Got a question first? <a href="#faq">See common questions</a>.</p>
     </div>
   </div>
 </section>
 
-<section class="line tint" id="home-faq">
-  <div class="wrap faq home-faq">
-    <div>
-      <p class="kicker">Common questions</p>
-      <h2 class="h2" style="margin-top:14px">Straight answers</h2>
-      <p class="lede" style="margin-top:16px">Can't find your question? Ring us on <a href="tel:0417813548">0417 813 548</a>, or see <a href="#faq">more questions</a>.</p>
-    </div>
-    <div>
-      <details open><summary>Is this complicated?</summary><p>No. We set everything up and show you how it works step by step, and you get a printed guide to keep.</p></details>
-      <details><summary>What if it sends something wrong?</summary><p>It won't send anything without your OK. You see every reply first, and you can change it or bin it.</p></details>
-      <details><summary>I'm not techy. Is this for me?</summary><p>That's exactly who we built this for. If you can use email and Facebook, you can use this.</p></details>
-      <details><summary>What does it cost?</summary><p>You start with a free Shop Tech Check. Founding Shops get 40% off any package, from A$900, and you'll know the full price before we start. <a href="#pack">See full prices</a>.</p></details>
-      <details><summary>Am I locked in?</summary><p>No. Everything is set up in your name, with your logins, and Care is month to month with 30 days' notice.</p></details>
-    </div>
-  </div>
-</section>
 
 <section class="line">
   <div class="wrap">
@@ -1222,6 +1212,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       <details open><summary>Do I need to be good with computers?</summary><p>No. If you can use Facebook and email, you can use this. We train you at your pace, over Zoom or in person by arrangement, and leave you a printed guide.</p></details>
       <details><summary>Will AI send things without me knowing?</summary><p>No. It won't send anything without your OK. Every email, post, customer reply and review reply waits for you to check it first.</p></details>
       <details><summary>Who owns the accounts?</summary><p>You do. Everything is set up in your name, with your logins.</p></details>
+      <details><summary>Am I locked in?</summary><p>No. Everything is set up in your name, with your logins, and Care is month to month with 30 days' notice.</p></details>
       <details><summary>What if you're not around?</summary><p>You get a printed guide, your login list and a one-page plan to keep. Nothing locks you in.</p></details>
       <details><summary>What will it cost me each month?</summary><p>Usually about A$30 to A$150 for your own software, plus a Care plan if you want one. Care is A$250 a month. Care Plus is A$450 a month. The exact amount is in your quote. Founding Shops include Care for the first 3 months.</p></details>
       <details><summary>Does it work with my till or shop system?</summary><p>Usually, yes. Tell us what you use in your free Tech Check and we'll check.</p></details>

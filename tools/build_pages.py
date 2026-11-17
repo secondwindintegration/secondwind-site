@@ -1,25 +1,28 @@
 """Make a copy of index.html for each page (prices.html, about.html ...) with that page's
 own title, description and link, so Google and Facebook see the right details for every page.
-Netlify runs this on every deploy (see netlify.toml), so only ever edit index.html."""
+Netlify runs this on every deploy (see netlify.toml). Keep PAGES in step with the META
+object in index.html."""
 import html, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://secondwindintegration.com'
+# Keep these in step with the META object in index.html. Titles stay at 60 characters or under,
+# descriptions at 155. The region is where we serve shops, not where Jake lives.
 PAGES = {
-    'services': ('What we do | Second Wind Integration',
-                 'What we set up for shop owners: a website chat helper, missed-call text back, invoice reminders, social posts and email replies, all on your own accounts and approved by you.'),
-    'prices': ('Packages and prices | Second Wind Integration',
-               'Packages and prices: a free Shop Tech Check, then Kickstart, Shop Assistant and Online Shop, plus month-to-month Care plans. Founding Shop places available.'),
-    'projects': ('Past projects | Second Wind Integration',
-                 "What we set up for Julia's Fabric Boutique: a new website and online shop, and weekly Facebook posts the owner checks and approves in a few minutes."),
-    'about': ('About Jake | Second Wind Integration',
-              'Meet Jake McGrath from Second Wind Integration. We help shop owners all over Australia get hours back every week, over Zoom, and you can always ring us.'),
-    'contact': ('Contact Jake | Second Wind Integration',
-                'Ring Jake on 0417 813 548, send us a message, or book a free Shop Tech Check over Zoom. We reply by the next business day.'),
+    'services': ('What we do | AI and tech for Albury Wodonga shops',
+                 'Hours back for shops across Albury Wodonga: missed calls, website chat, invoices, posts and email, drafted for you to approve.'),
+    'prices': ('Packages and prices | shops across Albury Wodonga',
+               'A free Shop Tech Check, then fixed packages for shops across Albury Wodonga. Founding Shops from A$900, agreed in writing.'),
+    'projects': ('Past projects | Second Wind for Albury Wodonga shops',
+                 "A new website, online shop and weekly posts for Julia's Fabric Boutique. Serving shops across Albury Wodonga."),
+    'about': ('About Jake McGrath | shops across Albury Wodonga',
+              'Practical AI and tech for independent shops across Albury Wodonga, in plain English.'),
+    'contact': ('Ring Jake | serving shops across Albury Wodonga',
+                'Serving shops across Albury Wodonga. Ring 0417 813 548 or email jake@secondwindintegration.com to book a free Shop Tech Check.'),
     'start': ('Less paperwork after closing time | Second Wind Integration',
-              "Book a free 30-minute Zoom chat with Jake. We'll look at where your hours go and show you what we'd set up, using the tools you already have."),
-    'privacy': ('Privacy policy | Second Wind Integration',
-                'How Second Wind Integration collects, uses and looks after your information, under the Australian Privacy Principles.'),
+              'Book a free 30-minute Zoom chat. Less paperwork after closing for shops across Albury Wodonga, using the tools you already have.'),
+    'privacy': ('Privacy policy | Second Wind, serving Albury Wodonga',
+                'How Second Wind Integration, run by Jake McGrath, collects and looks after your information. Serving shops across Albury Wodonga.'),
 }
 
 src = (ROOT / 'index.html').read_text(encoding='utf-8')
@@ -42,5 +45,8 @@ for pid, (title, desc) in PAGES.items():
     # show this page (not the homepage) before any script runs
     page = sub(r'<main class="page" id="home">', '<main class="page" id="home" hidden>', page)
     page = sub(rf'<main class="page" id="{pid}" hidden>', f'<main class="page" id="{pid}">', page)
+    page, n = re.subn(r'\n?<script type="application/ld\+json" id="local-business">[\s\S]*?</script>', '', page, count=1)
+    if n != 1:
+        raise SystemExit('build_pages: JSON-LD block missing from index.html')
     (ROOT / f'{pid}.html').write_text(page, encoding='utf-8')
     print('built', f'{pid}.html')

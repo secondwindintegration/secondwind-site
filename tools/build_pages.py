@@ -24,6 +24,29 @@ PAGES = {
 
 src = (ROOT / 'index.html').read_text(encoding='utf-8')
 
+# The thank-you email (netlify/lib/autoresponder.mjs) only answers forms whose name and source
+# are in its ENQUIRY_FORMS and ENQUIRY_SOURCES lists. If a form here is renamed without updating
+# those lists, the emails would silently stop, so stop the deploy instead.
+def mjs_set(name, js):
+    m = re.search(rf'{name} = new Set\(\[([^\]]*)\]\)', js)
+    if not m:
+        raise SystemExit(f'build_pages: could not find {name} in autoresponder.mjs')
+    return set(re.findall(r"'([^']+)'", m.group(1)))
+
+js = (ROOT / 'netlify' / 'lib' / 'autoresponder.mjs').read_text(encoding='utf-8')
+known_forms, known_sources = mjs_set('ENQUIRY_FORMS', js), mjs_set('ENQUIRY_SOURCES', js)
+lead_forms = re.findall(r'<form class="[^"]*\blead-form\b[^>]*>.*?</form>', src, re.S)
+if not lead_forms:
+    raise SystemExit('build_pages: found no lead forms in index.html')
+for f in lead_forms:
+    form_name = re.search(r'name="form-name" value="([^"]*)"', f)
+    source = re.search(r'name="source" value="([^"]*)"', f)
+    if not form_name or form_name.group(1) not in known_forms:
+        raise SystemExit(f'build_pages: form-name {form_name and form_name.group(1)!r} is not in ENQUIRY_FORMS in netlify/lib/autoresponder.mjs')
+    if not source or source.group(1) not in known_sources:
+        raise SystemExit(f'build_pages: source {source and source.group(1)!r} is not in ENQUIRY_SOURCES in netlify/lib/autoresponder.mjs')
+print('checked', len(lead_forms), 'enquiry forms against the thank-you email lists')
+
 def sub(pattern, repl, text):
     out, n = re.subn(pattern, lambda m: repl, text, count=1)
     if n != 1:

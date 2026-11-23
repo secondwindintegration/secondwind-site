@@ -1070,10 +1070,10 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
         <p class="kicker" style="color:var(--ink)">Rough estimate: you could get back about</p>
         <p class="big"><span id="out-h">2.4</span><small>hours every week</small></p>
         <div class="out-row">
-          <div><b id="out-y">A$16,128</b><span>worth of time a year</span></div>
-          <div><b id="out-d">58</b><span>full working days a year</span></div>
+          <div><b id="out-y">A$4,032</b><span>worth of time a year</span></div>
+          <div><b id="out-d">14</b><span>full working days a year</span></div>
         </div>
-        <p style="font-size:16px;color:var(--ink-2)">This is a rough estimate, not a promise. A Shop Tech Check looks at your real week and gives you a proper answer.</p>
+        <p style="font-size:16px;color:var(--ink-2)">It assumes we can take about 40% of that admin off your plate, over 48 working weeks a year, with 8-hour working days. This is a rough estimate, not a promise. A Shop Tech Check looks at your real week and gives you a proper answer.</p>
         <a class="btn btn-primary btn-lg" href="#zoom-chat">Find out with a free Shop Tech Check</a>
       </div>
     </div>
@@ -1715,15 +1715,18 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   openMail(0);
 
   /* ---------- Estimate ---------- */
-  const fmt = n => Math.round(n).toLocaleString();
+  // The assumptions are also written out for visitors under the estimate (search "40% of that admin").
+  // If you change one here, change that sentence and the starting numbers in #out-h, #out-y and #out-d too.
+  const SHARE_SAVED = 0.4, WEEKS_A_YEAR = 48, HOURS_A_DAY = 8;
+  const fmt = n => Math.round(n).toLocaleString('en-AU');
   function calc() {
     const team = +$('team').value, hrs = +$('hrs').value * ($('pt').checked ? 0.5 : 1), rate = +$('rate').value;
     ['team', 'hrs', 'rate'].forEach(id => { const el = $(id); el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); });
     $('team-o').textContent = team; $('hrs-o').textContent = $('hrs').value; $('rate-o').textContent = 'A$' + rate;
-    const saved = team * hrs * 0.4;
+    const saved = team * hrs * SHARE_SAVED;
     $('out-h').textContent = saved < 10 ? saved.toFixed(1).replace(/\.0$/, '') : fmt(saved);
-    $('out-y').textContent = 'A$' + fmt(saved * rate * 48);
-    $('out-d').textContent = fmt(saved * 48 / 8);
+    $('out-y').textContent = 'A$' + fmt(saved * rate * WEEKS_A_YEAR);
+    $('out-d').textContent = fmt(saved * WEEKS_A_YEAR / HOURS_A_DAY);
   }
   ['team', 'hrs', 'rate'].forEach(id => $(id).addEventListener('input', calc)); $('pt').addEventListener('change', calc); calc();
 
@@ -1964,18 +1967,20 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
       const body = Object.assign({ access_key: 'c5f2010f-6da6-4918-a380-3bc011cc24c7', from_name: 'Second Wind website', subject: (previewHost ? '[PREVIEW TEST] ' : '') + subject, page: form.dataset.src || '' }, d);
       if (d.email) body.replyto = d.email;
       else if (d.contact && d.contact.includes('@')) body.replyto = d.contact;
-      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
-      const j = await r.json().catch(() => ({}));
-      const sent = r.ok && j.success !== false;
-      // Best-effort. Netlify stores the enquiry and emails the visitor.
-      // A failure here does not change what the visitor sees, and Jake already has the Web3Forms email.
-      if (sent && !isNews) {
-        try {
-          const params = new URLSearchParams(new FormData(form)).toString();
-          fetch('/enquiry.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params, keepalive: true }).catch(() => {});
-        } catch { /* the thank-you email is best-effort; Jake already has this enquiry */ }
-      }
-      return sent ? 'ok' : 'fail';
+      // Each enquiry goes two ways at once, so one service being down doesn't lose it:
+      //  1. Web3Forms emails it to Jake.
+      //  2. Netlify stores it and its function emails the visitor a thank-you (netlify/lib/autoresponder.mjs).
+      //     That function only answers the form names listed in ENQUIRY_FORMS there; tools/build_pages.py
+      //     stops the deploy if a form here is renamed without updating that list.
+      // The visitor sees "sent" if either one accepted it. Newsletter sign-ups only go to Web3Forms.
+      const toWeb3 = fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) })
+        .then(async r => { const j = await r.json().catch(() => ({})); return r.ok && j.success !== false; })
+        .catch(() => false);
+      const toNetlify = isNews ? Promise.resolve(false)
+        : fetch('/enquiry.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString(), keepalive: true })
+          .then(r => r.ok).catch(() => false);
+      const [web3, netlify] = await Promise.all([toWeb3, toNetlify]);
+      return web3 || netlify ? 'ok' : 'fail';
     } catch { return 'fail'; }
   }
   const failMsg = 'Sorry, that didn\'t send. Please ring or email us instead.';

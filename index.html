@@ -312,6 +312,11 @@ blockquote footer { margin-top: 10px; font: 400 17px var(--f-body); color: var(-
 .portrait span { position: absolute; bottom: 12px; left: 12px; right: 12px; background: var(--surface); border-radius: 8px; padding: 6px 10px; font-size: 15px; text-align: center; }
 .about p + p { margin-top: 16px; }
 .about .lede { max-width: 60ch; }
+.about-video { max-width: 960px; margin: 0 auto; text-align: center; }
+.about-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 18px; background: #12305a; box-shadow: 0 18px 40px rgba(16, 32, 58, .14); }
+.about-video .tease-btns { justify-content: center; margin-top: 22px; }
+.about-video details { max-width: 640px; margin: 22px auto 0; text-align: left; }
+.about-video details p { color: var(--ink-2); }
 
 /* FAQ */
 .faq { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(30px, 5vw, 64px); }
@@ -1281,6 +1286,18 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
   </div>
 </section>
 
+<section style="padding-top:0">
+  <div class="wrap about-video">
+    <h2 class="h2" style="font-size:clamp(24px,3vw,32px);margin-bottom:20px">Meet Jake in 36 seconds</h2>
+    <video controls playsinline preload="metadata" poster="/img/meet-jake-poster.jpg" width="1920" height="1080" aria-label="Video: Jake McGrath explains what Second Wind does, with captions">
+      <source src="/video/meet-jake.mp4" type="video/mp4">
+      Your browser can't play this video. <a href="/video/meet-jake.mp4">Download it here</a>.
+    </video>
+    <div class="tease-btns"><a class="btn btn-primary btn-lg" href="#zoom-chat">Book your free 30-min Zoom chat</a></div>
+    <details><summary>Read what Jake says</summary><p>Hi, I'm Jake from Second Wind. I help small business owners get hours back every week using AI to do the jobs that eat your nights. Things like answering missed calls, chasing unpaid invoices and replying to the same customer questions over and over again. I set it up for you. You don't have to be good with computers and you stay in charge of everything. The first shop I did this for was a small fabric boutique. The owner is now saving 10 to 12 hours every single week. If you're running a business and you're flat out, book a 30-minute free Zoom call.</p></details>
+  </div>
+</section>
+
 <section class="line">
   <div class="wrap">
     <div class="teaser">
@@ -1748,6 +1765,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
     if (anchor) target = document.getElementById(anchor);
     const changed = page.hidden;
     pages.forEach(p => { p.hidden = p !== page; });
+    document.querySelectorAll('main.page[hidden] video').forEach(v => v.pause());
     document.body.classList.toggle('lp', page.id === 'start');
     const go = document.getElementById('mbar-go');
     if (go) { const tc = page.id === 'home'; go.href = page.id === 'start' ? '#start-book' : tc ? '#tech-check' : '#zoom-chat'; go.textContent = page.id === 'start' ? 'Book free chat' : 'Free Tech Check'; }

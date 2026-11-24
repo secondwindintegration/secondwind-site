@@ -317,6 +317,9 @@ blockquote footer { margin-top: 10px; font: 400 17px var(--f-body); color: var(-
 .about-video .tease-btns { justify-content: center; margin-top: 22px; }
 .about-video details { max-width: 640px; margin: 22px auto 0; text-align: left; }
 .about-video details p { color: var(--ink-2); }
+.about-text { max-width: 760px; margin-top: clamp(40px, 6vw, 64px); }
+.about-text .lede { max-width: 60ch; }
+.about-text p + p { margin-top: 16px; }
 
 /* FAQ */
 .faq { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(30px, 5vw, 64px); }
@@ -844,7 +847,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
         <a class="btn btn-ghost" href="tel:0417813548">Or ring Jake: 0417 813 548</a>
       </div>
       <p class="cta-note">A 30-min Zoom call. You leave with a one-page report and 3 time-savers, whether you hire us or not.</p>
-      <p class="jake-line"><img data-copy="img-jake" alt="" width="48" height="48">Jake looks at your shop himself, and you can ring him any time.</p>
+      <p class="jake-line"><img src="/img/jake-mcgrath.jpg" alt="" width="48" height="48">Jake looks at your shop himself, and you can ring him any time.</p>
       <figure class="mini-quote"><blockquote>“He was patient, explained everything in plain English, and is always a phone call away.”</blockquote><figcaption>Estelle, owner of Julia's Fabric Boutique</figcaption></figure>
       <ul class="checks">
         <li><span class="tick">✓</span>Made for owners who aren't "computer people"</li>
@@ -982,7 +985,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
 
 <section class="line" id="hi-jake">
   <div class="wrap hi-jake">
-    <img loading="lazy" decoding="async" data-copy="img-jake" alt="Jake McGrath, founder of Second Wind Integration" width="240" height="276" loading="lazy">
+    <img loading="lazy" decoding="async" src="/img/jake-mcgrath.jpg" alt="Jake McGrath, founder of Second Wind Integration" width="240" height="276" loading="lazy">
     <div>
       <p class="kicker">Hi, I'm Jake</p>
       <h2 class="h2" style="margin-top:14px">A real person you can ring</h2>
@@ -1273,28 +1276,22 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
 
 <main class="page" id="about" hidden>
 <section style="padding-top:clamp(44px,6vw,72px)">
-  <div class="wrap about">
-    <div class="portrait"><img id="img-jake" loading="lazy" decoding="async" src="/img/jake-mcgrath.jpg" alt="Jake McGrath, founder of Second Wind Integration" width="720" height="828"><span>Jake McGrath</span></div>
-    <div>
-      <p class="kicker">About</p>
-      <h1 class="h2" style="margin-top:14px">Hi, I'm Jake. I'll always pick up the phone.</h1>
-      <p class="lede" style="margin-top:18px"><b style="color:var(--ink)">You'll work with Second Wind — a real company, not a call centre. Non-tech owners are very welcome.</b></p>
-      <p class="lede" style="margin-top:18px">I started Second Wind because I watched good, established shops lose customers to big online stores. They didn't lose them because their products were worse. They just didn't have time for marketing.</p>
-      <p class="lede">I'm also an endurance athlete. A "second wind" is the moment the hard part gets easier, and that's what I want for your week.</p>
-      <p class="lede" style="margin-top:18px">We check everything before it reaches you, nothing goes out without your OK, and we reply to every call and email by the next business day.</p>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
   <div class="wrap about-video">
-    <h2 class="h2" style="font-size:clamp(24px,3vw,32px);margin-bottom:20px">Meet Jake in 36 seconds</h2>
+    <h2 class="h2" style="font-size:clamp(26px,3.2vw,36px);margin-bottom:20px">A message from the owner</h2>
     <video controls playsinline preload="metadata" poster="/img/meet-jake-poster.jpg" width="1920" height="1080" aria-label="Video: Jake McGrath explains what Second Wind does, with captions">
       <source src="/video/meet-jake.mp4" type="video/mp4">
       Your browser can't play this video. <a href="/video/meet-jake.mp4">Download it here</a>.
     </video>
     <div class="tease-btns"><a class="btn btn-primary btn-lg" href="#zoom-chat">Book your free 30-min Zoom chat</a></div>
     <details><summary>Read what Jake says</summary><p>Hi, I'm Jake from Second Wind. I help small business owners get hours back every week using AI to do the jobs that eat your nights. Things like answering missed calls, chasing unpaid invoices and replying to the same customer questions over and over again. I set it up for you. You don't have to be good with computers and you stay in charge of everything. The first shop I did this for was a small fabric boutique. The owner is now saving 10 to 12 hours every single week. If you're running a business and you're flat out, book a 30-minute free Zoom call.</p></details>
+  </div>
+  <div class="wrap about-text">
+    <p class="kicker">About</p>
+    <h1 class="h2" style="margin-top:14px">Hi, I'm Jake. I'll always pick up the phone.</h1>
+    <p class="lede" style="margin-top:18px"><b style="color:var(--ink)">You'll work with Second Wind — a real company, not a call centre. Non-tech owners are very welcome.</b></p>
+    <p class="lede" style="margin-top:18px">I started Second Wind because I watched good, established shops lose customers to big online stores. They didn't lose them because their products were worse. They just didn't have time for marketing.</p>
+    <p class="lede">I'm also an endurance athlete. A "second wind" is the moment the hard part gets easier, and that's what I want for your week.</p>
+    <p class="lede" style="margin-top:18px">We check everything before it reaches you, nothing goes out without your OK, and we reply to every call and email by the next business day.</p>
   </div>
 </section>
 
@@ -1480,7 +1477,7 @@ footer.site::before { content: ""; position: absolute; top: -1px; left: 0; right
 
 <section class="line">
   <div class="wrap lp-me">
-    <img loading="lazy" decoding="async" data-copy="img-jake" alt="Jake McGrath" width="160" height="184">
+    <img loading="lazy" decoding="async" src="/img/jake-mcgrath.jpg" alt="Jake McGrath" width="160" height="184">
     <div>
       <h2 class="h2" style="font-size:clamp(28px,3.4vw,38px)">Hi, I'm Jake. A real person you can ring.</h2>
       <p class="lede" style="margin-top:12px">We work with shops all over Australia over Zoom. I started Second Wind because I kept seeing good shop owners buried in admin and sold tech they didn't need. We do the techy bits, you stay in charge, and we never lock you in. Ring me on <a href="tel:0417813548">0417 813 548</a>.</p>
